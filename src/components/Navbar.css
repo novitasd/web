@@ -1,0 +1,38 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #000000;
+  color: rgb(128, 122, 122);
+  height: 12vh;
+  font-family: 'Montserrat', sans-serif;
+  
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 20%;
+  text-align: center;
+}
+.logo img{
+  width: 80px;
+  height: 80px;
+}
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  list-style: none;
+  width: 80%;
+}
+
+.nav-links a {
+  color: rgb(158, 158, 158);
+  text-decoration: none;
+} 
+
+.nav-links a:hover {
+  color: #ffffff ;
+}

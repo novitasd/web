@@ -1,0 +1,52 @@
+.fondo {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+/* Video de fondo */
+.video-fondo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* Capa oscura encima del video */
+.fondo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 2;
+}
+
+/* Texto encima */
+.titulo {
+  position: relative;
+  z-index: 3;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.titulo h1 {
+  font-size: 3rem;
+  margin-top: 50px;
+  font-weight: 800;
+  letter-spacing: 8px;
+  text-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+}
+
+.titulo p {
+  margin-top: 15px;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #f0f0f0;
+}
