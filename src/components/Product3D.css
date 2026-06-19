@@ -1,0 +1,102 @@
+.product3d-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background: #050505;
+}
+
+/* 🎯 3D A LA IZQUIERDA */
+.canvas-wrapper {
+  flex: 1.2;
+  height: 100%;
+}
+
+/* 🎯 INFO A LA DERECHA */
+.product3d-info {
+  flex: 0.8;
+  padding: 60px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+}
+
+.product3d-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.product3d-price {
+  font-size: 1.5rem;
+  color: #d1d5db;
+}
+
+.product3d-desc {
+  color: #9ca3af;
+  line-height: 1.5;
+}
+
+/* SECCIONES */
+.section h3 {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #e5e7eb;
+}
+
+/* COLORES */
+.product3d-colors {
+  display: flex;
+  gap: 12px;
+}
+
+.color-btn {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.color-btn:hover {
+  transform: scale(1.15);
+}
+
+.color-black { background: #111827; }
+.color-red { background: #ef4444; }
+.color-blue { background: #2563eb; }
+.color-white { background: #ffffff; }
+
+/* TALLAS */
+.sizes {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.size-btn {
+  padding: 8px 12px;
+  border: 1px solid #374151;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.size-btn.active {
+  background: white;
+  color: black;
+}
+
+/* BOTÓN */
+.buy-btn {
+  margin-top: 20px;
+  padding: 12px;
+  background: white;
+  color: black;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 8px;
+}
