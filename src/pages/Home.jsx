@@ -5,7 +5,8 @@ import SliderCategorias from "../components/SliderCategorias.jsx";
 import videoFondo from "../assets/video/fondoretro.mp4";
 import ShoeViewer from "../components/ShoeViewer";
 import Explore3D from "../components/Explore3D.jsx";
-
+import GallerySection from "../components/GallerySection.jsx";
+import StyleCategories from "../components/StyleCategories.jsx";
 import "./Home.css";
 
 function Home() {
@@ -26,7 +27,7 @@ function Home() {
          <div className="titulo">
 
   <span className="badge">
-    SAMU.PE
+    @SAMU.PE
   </span>
 
   <h1>
@@ -52,9 +53,12 @@ function Home() {
   </div>
 </div>
         </div>
+        <StyleCategories/>
         <SliderCategorias/>
         <ShoeViewer />
         <Explore3D/>
+        <GallerySection/>
+        
       </main>
      
     </>

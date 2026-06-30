@@ -1,0 +1,216 @@
+/*==================================
+        STYLE CATEGORIES
+===================================*/
+
+.style-categories{
+    width: 100%;
+    padding: 90px 7%;
+    background: #fff;
+}
+
+/*==================================
+            HEADER
+===================================*/
+
+.style-header{
+    margin-bottom: 60px;
+}
+
+.style-header span{
+    display: block;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.style-header h2{
+    font-size: clamp(2.2rem,4vw,3.8rem);
+    font-weight: 900;
+    color: #111;
+    line-height: 1;
+}
+
+/*==================================
+            SLIDER
+===================================*/
+
+.style-slider{
+
+    display: flex;
+    align-items: flex-start;
+    gap: 45px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+
+    padding-bottom: 15px;
+
+}
+
+.style-slider::-webkit-scrollbar{
+    height: 6px;
+}
+
+.style-slider::-webkit-scrollbar-thumb{
+    background: #d9d9d9;
+    border-radius: 20px;
+}
+
+/*==================================
+            CARD
+===================================*/
+
+.style-card{
+
+    min-width: 180px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    cursor: pointer;
+
+    scroll-snap-align: start;
+
+}
+
+/*==================================
+            IMAGE
+===================================*/
+
+.style-image{
+
+    width: 170px;
+    height: 170px;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    background: #f3f3f3;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: .35s;
+
+}
+
+.style-image img{
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    transition: .45s;
+
+}
+
+.style-card:hover .style-image{
+
+    transform: translateY(-6px);
+
+    box-shadow: 0 18px 35px rgba(0,0,0,.12);
+
+}
+
+.style-card:hover img{
+
+    transform: scale(1.08);
+
+}
+
+/*==================================
+            TEXT
+===================================*/
+
+.style-card h3{
+
+    margin-top: 22px;
+
+    font-size: 1rem;
+
+    font-weight: 700;
+
+    color: #111;
+
+    text-align: center;
+
+    transition: .3s;
+
+}
+
+.style-card:hover h3{
+
+    letter-spacing: .5px;
+
+}
+
+/*==================================
+        RESPONSIVE
+===================================*/
+
+@media(max-width:992px){
+
+.style-image{
+
+    width:150px;
+    height:150px;
+
+}
+
+.style-card{
+
+    min-width:160px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.style-categories{
+
+    padding:70px 20px;
+
+}
+
+.style-header h2{
+
+    font-size:2rem;
+
+}
+
+.style-slider{
+
+    gap:25px;
+
+}
+
+.style-image{
+
+    width:120px;
+    height:120px;
+
+}
+
+.style-card{
+
+    min-width:130px;
+
+}
+
+.style-card h3{
+
+    font-size:.9rem;
+
+}
+
+}

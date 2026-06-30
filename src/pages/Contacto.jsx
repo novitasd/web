@@ -1,4 +1,11 @@
-// src/pages/Contacto.jsx
-export default function Contacto() {
-  return <h1>Contacto</h1>;
+import ContactHero from "../components/contacto/ContactHero";
+
+function Contacto() {
+  return (
+    <>
+    <ContactHero/>
+    </>
+  );
 }
+
+export default Contacto;
