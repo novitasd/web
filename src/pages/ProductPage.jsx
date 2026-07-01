@@ -1,21 +1,14 @@
-import Product3D from "../components/Product3D";
+import { useParams } from "react-router-dom";
+import ProductDetails from "../components/ProductDetails";
 
-export default function ProductPage() {
-  const product = {
-    id: 1,
-    name: "Air Runner X",
-    price: 129.99,
-  };
+function ProductPage() {
+  const { id } = useParams();
 
   return (
-    <div
-      style={{
-        width: "100vw",
-        height: "100vh",
-        background: "#111",
-      }}
-    >
-      <Product3D product={product} />
-    </div>
+    <main className="product-page">
+      <ProductDetails id={id} />
+    </main>
   );
 }
+
+export default ProductPage;

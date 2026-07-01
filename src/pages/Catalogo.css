@@ -88,6 +88,12 @@
 .producto strong{
     font-size:20px;
 }
+.producto-link{
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 @media(max-width:900px){
 
 .catalogo{

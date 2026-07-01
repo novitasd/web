@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./Catalogo.css";
-import Navbar from "../components/Navbar";
 
 function Catalogo() {
   const [productos, setProductos] = useState([]);
 
-  // Simulando API (como si viniera de backend)
   useEffect(() => {
     const dataSimulada = [
       {
@@ -66,73 +65,92 @@ function Catalogo() {
       },
     ];
 
-    // simulamos delay de API
     setTimeout(() => {
       setProductos(dataSimulada);
     }, 500);
   }, []);
 
   return (
+    <section className="catalogo">
 
-   <section className="catalogo">
-  <aside className="sidebar">
-    <h3>Categorías</h3>
+      <aside className="sidebar">
 
-    <ul>
-      <li>Nike</li>
-      <li>Jordan</li>
-      <li>Adidas</li>
-      <li>New Balance</li>
-      <li>Puma</li>
-    </ul>
+        <h3>Categorías</h3>
 
-    <hr />
+        <ul>
+          <li>Nike</li>
+          <li>Jordan</li>
+          <li>Adidas</li>
+          <li>New Balance</li>
+          <li>Puma</li>
+        </ul>
 
-    <h3>Talla</h3>
+        <hr />
 
-    <h3>Precio</h3>
+        <h3>Talla</h3>
 
-    <h3>Color</h3>
+        <h3>Precio</h3>
 
-  </aside>
+        <h3>Color</h3>
 
-  <main className="productos">
+      </aside>
 
-    <div className="top">
-      <h2>Catálogo ({productos.length})</h2>
+      <main className="productos">
 
-      <select>
-        <option>Más recientes</option>
-        <option>Menor precio</option>
-        <option>Mayor precio</option>
-      </select>
-    </div>
+        <div className="top">
 
-    <div className="grid">
-      {productos.map((p)=>(
-        <article className="producto" key={p.id}>
+          <h2>Catálogo ({productos.length})</h2>
 
-          <div className="imagen">
-            <img src={p.imagen} alt={p.nombre}/>
-          </div>
+          <select>
+            <option>Más recientes</option>
+            <option>Menor precio</option>
+            <option>Mayor precio</option>
+          </select>
 
-          <span className="etiqueta">Superventas</span>
+        </div>
 
-          <h3>{p.nombre}</h3>
+        <div className="grid">
 
-          <p className="descripcion">
-            Zapatillas deportivas
-          </p>
+          {productos.map((p) => (
 
-          <strong>${p.precio}</strong>
+            <Link
+              key={p.id}
+              to={`/producto/${p.id}`}
+              className="producto-link"
+            >
 
-        </article>
-      ))}
-    </div>
+              <article className="producto">
 
-  </main>
+                <div className="imagen">
+                  <img
+                    src={p.imagen}
+                    alt={p.nombre}
+                  />
+                </div>
 
-</section>
+                <span className="etiqueta">
+                  Superventas
+                </span>
+
+                <h3>{p.nombre}</h3>
+
+                <p className="descripcion">
+                  Zapatillas deportivas
+                </p>
+
+                <strong>S/. {p.precio}</strong>
+
+              </article>
+
+            </Link>
+
+          ))}
+
+        </div>
+
+      </main>
+
+    </section>
   );
 }
 

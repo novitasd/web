@@ -17,10 +17,19 @@ function App() {
       <Navbar />
 
       <Routes>
+
         <Route path="/" element={<Home />} />
+
         <Route path="/catalogo" element={<Catalogo />} />
+
         <Route path="/contacto" element={<Contacto />} />
-        <Route path="/producto/1" element={<ProductPage />} />
+
+        {/* Producto normal */}
+        <Route
+          path="/producto/:id"
+          element={<ProductPage />}
+        />
+
       </Routes>
 
       <Footer />
