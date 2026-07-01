@@ -4,22 +4,17 @@ const gallery = [
   {
     id: 1,
     title: "Jordan Collection",
-    image: "/gallery/jordan.jpg",
+    image: "https://cdn-images.farfetch-contents.com/15/05/76/88/15057688_25617121_2048.jpg",
   },
   {
     id: 2,
     title: "Street Style",
-    image: "/gallery/street.jpg",
+    image: "https://cdn-images.farfetch-contents.com/20/25/53/98/20255398_51237620_1000.jpg",
   },
   {
     id: 3,
     title: "Running",
-    image: "/gallery/running.jpg",
-  },
-  {
-    id: 4,
-    title: "Lifestyle",
-    image: "/gallery/lifestyle.jpg",
+    image: "https://cdn-images.farfetch-contents.com/28/19/57/99/28195799_58273903_1000.jpg",
   },
 ];
 

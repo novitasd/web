@@ -47,10 +47,10 @@ function ShoeViewer() {
 
           <OrbitControls
             enablePan={false}
+            enableZoom={false}
             minDistance={6}
-            maxDistance={5}
             enableDamping
-            dampingFactor={0.05}
+            dampingFactor={0.05}s
             autoRotate
             autoRotateSpeed={1.5}
           />

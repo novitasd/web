@@ -1,38 +1,40 @@
-// components/home/Explore3D/Explore3D.jsx
-
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./Explore3D.css";
 
-// Simulación de datos provenientes de la base de datos
+import jordan from "../assets/categorias/jordan.png";
+import nike from "../assets/categorias/nike.png";
+import airmax from "../assets/categorias/airmax.png";
+import dunk from "../assets/categorias/dunk.png";
+
 const products = [
   {
     id: 1,
-    name: "Nike Air Max Plus",
-    category: "Running",
+    name: "Air Jordan 4 Black Cat",
+    category: "Jordan",
     price: "899",
-    image: "/images/airmax-plus.png",
+    image: jordan,
   },
   {
     id: 2,
     name: "Nike Air Force 1",
-    category: "Lifestyle",
+    category: "Nike",
     price: "649",
-    image: "/images/airforce1.png",
+    image: nike,
   },
   {
     id: 3,
-    name: "Nike Zoom Vomero",
-    category: "Running",
+    name: "Nike Air Max",
+    category: "Air Max",
     price: "799",
-    image: "/images/vomero.png",
+    image: airmax,
   },
   {
     id: 4,
     name: "Nike Dunk Low",
-    category: "Casual",
+    category: "Dunk",
     price: "699",
-    image: "/images/dunklow.png",
+    image: dunk,
   },
 ];
 
@@ -46,10 +48,8 @@ const Explore3D = () => {
         </button>
 
         <div className="explore3d-slider">
-
           {products.map((product) => (
             <div className="product3d-card" key={product.id}>
-
               <div className="product-image">
                 <img src={product.image} alt={product.name} />
 
@@ -59,7 +59,6 @@ const Explore3D = () => {
               </div>
 
               <div className="product-info">
-
                 <small>{product.category}</small>
 
                 <h3>{product.name}</h3>
@@ -72,12 +71,9 @@ const Explore3D = () => {
                 >
                   Ver en 3D →
                 </Link>
-
               </div>
-
             </div>
           ))}
-
         </div>
 
         <button className="slider-arrow right">

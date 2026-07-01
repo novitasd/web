@@ -1,8 +1,208 @@
-.footer {
-  background: #111827;
-  color: white;
-  text-align: start;
-  padding: 1rem;
-  font-family: 'Montserrat', sans-serif;
-  letter-spacing: 1px;
+/*==========================
+        FOOTER
+==========================*/
+
+.footer{
+
+    width:100%;
+
+    background:#fff;
+
+    border-top:1px solid #ececec;
+
+    margin-top:100px;
+
+}
+
+.footer-container{
+
+    max-width:1400px;
+
+    margin:auto;
+
+    padding:70px 7%;
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr 1fr 1fr;
+
+    gap:60px;
+
+}
+
+/*==========================
+        BRAND
+==========================*/
+
+.footer-brand h2{
+
+    font-size:2rem;
+
+    font-weight:900;
+
+    color:#111;
+
+    margin-bottom:20px;
+
+}
+
+.footer-brand p{
+
+    color:#666;
+
+    line-height:1.8;
+
+    max-width:340px;
+
+    margin-bottom:30px;
+
+}
+
+/*==========================
+        SOCIAL
+==========================*/
+
+.footer-social{
+
+    display:flex;
+
+    gap:18px;
+
+}
+
+.footer-social a{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-decoration:none;
+
+    color:#111;
+
+    background:#f5f5f5;
+
+    transition:.3s;
+
+}
+
+.footer-social a:hover{
+
+    background:#111;
+
+    color:#fff;
+
+}
+
+/*==========================
+        LINKS
+==========================*/
+
+.footer-links{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.footer-links h3{
+
+    font-size:1rem;
+
+    margin-bottom:20px;
+
+    color:#111;
+
+}
+
+.footer-links a,
+.footer-links span{
+
+    margin-bottom:14px;
+
+    color:#666;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.footer-links a:hover{
+
+    color:#111;
+
+    transform:translateX(5px);
+
+}
+
+/*==========================
+        BOTTOM
+==========================*/
+
+.footer-bottom{
+
+    border-top:1px solid #ececec;
+
+    text-align:center;
+
+    padding:25px;
+
+}
+
+.footer-bottom p{
+
+    color:#777;
+
+    font-size:.9rem;
+
+}
+
+/*==========================
+        RESPONSIVE
+==========================*/
+
+@media(max-width:992px){
+
+.footer-container{
+
+    grid-template-columns:1fr 1fr;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.footer{
+
+    margin-top:70px;
+
+}
+
+.footer-container{
+
+    grid-template-columns:1fr;
+
+    gap:40px;
+
+    padding:50px 20px;
+
+}
+
+.footer-bottom{
+
+    padding:20px;
+
+}
+
 }

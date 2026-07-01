@@ -6,19 +6,19 @@ const categorias = [
     id: 1,
     nombre: "Air Jordan",
     imagen:
-      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/air-jordan-1-low-shoes-6Q1tFM.png",
+      "https://cdn-images.farfetch-contents.com/23/53/42/98/23534298_53693492_1000.jpg",
   },
   {
     id: 2,
-    nombre: "Pegasus",
+    nombre: "Nike",
     imagen:
-      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/pegasus-premium-road-running-shoes.png",
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/air-force-1-07-shoes.png",
   },
   {
     id: 3,
-    nombre: "Vomero",
+    nombre: "Air Max",
     imagen:
-      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/vomero-18-road-running-shoes.png",
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/air-max-dn-shoes.png",
   },
   {
     id: 4,
@@ -28,9 +28,9 @@ const categorias = [
   },
   {
     id: 5,
-    nombre: "Air Force",
+    nombre: "Edición Limitada",
     imagen:
-      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/air-force-1-07-shoes.png",
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/air-jordan-4-rm-shoes.png",
   },
 ];
 
@@ -51,37 +51,23 @@ export default function SliderCategorias() {
 
   return (
     <section className="sliderCategorias">
-
       <div className="sliderHeader">
-
         <h2>Compra nuestros iconos</h2>
 
         <div className="botones">
-
           <button onClick={anterior}>‹</button>
-
           <button onClick={siguiente}>›</button>
-
         </div>
-
       </div>
 
       <div className="slider">
-
         {categorias.slice(inicio, inicio + 3).map((item) => (
-
           <div className="item" key={item.id}>
-
             <img src={item.imagen} alt={item.nombre} />
-
             <button>{item.nombre}</button>
-
           </div>
-
         ))}
-
       </div>
-
     </section>
   );
 }
