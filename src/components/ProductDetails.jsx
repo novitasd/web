@@ -4,124 +4,130 @@ import {
   FaTruck,
   FaShieldAlt,
   FaCreditCard,
-  FaStar,
 } from "react-icons/fa";
 
+import productos from "../data/productos";
 import "./ProductDetails.css";
 
 function ProductDetails({ id }) {
   const [product, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState("");
-  const [selectedSize, setSelectedSize] = useState(null);
-  const [selectedColor, setSelectedColor] = useState("");
+  const [selectedSize, setSelectedSize] = useState("");
 
-  useEffect(() => {
-    // Simulación del backend
-    const data = [
-      {
-        id: 1,
-        brand: "Nike",
-        name: "Nike Air Force",
-        price: 120,
-        description:
-          "Un clásico que combina historia, comodidad y estilo urbano para cualquier ocasión.",
-        images: [
-          "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519",
-          "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6",
-          "https://images.unsplash.com/photo-1600269452121-4f2416e55c28",
-          "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
-        ],
-        colors: ["#000000", "#ffffff", "#8b5cf6"],
-        sizes: [38, 39, 40, 41, 42, 43],
-      },
-      {
-        id: 2,
-        brand: "Adidas",
-        name: "Adidas Samba",
-        price: 110,
-        description:
-          "Uno de los modelos más icónicos de Adidas Originals.",
-        images: [
-          "https://images.unsplash.com/photo-1600269452121-4f2416e55c28",
-          "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6",
-          "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
-        ],
-        colors: ["#ffffff", "#000000"],
-        sizes: [38, 39, 40, 41, 42],
-      },
-    ];
+useEffect(() => {
+  const productoEncontrado = productos.find(
+    (item) => item.id === Number(id)
+  );
 
-    const productoEncontrado = data.find(
-      (item) => item.id === Number(id)
+  if (productoEncontrado) {
+    setProduct(productoEncontrado);
+
+    setSelectedImage(
+      productoEncontrado.imagenes?.[0] ||
+      productoEncontrado.imagen
     );
-
-    if (productoEncontrado) {
-      setProduct(productoEncontrado);
-      setSelectedImage(productoEncontrado.images[0]);
-      setSelectedColor(productoEncontrado.colors[0]);
-    }
-  }, [id]);
+  }
+}, [id]);
 
   if (!product) {
     return <h2>Cargando producto...</h2>;
   }
-
- return (
+  return (
   <section className="product-details">
 
-    {/* Breadcrumb */}
-
     <div className="breadcrumb">
-      Inicio / {product.brand} / {product.name}
+      Inicio / {product.categoria} / {product.nombre}
     </div>
-
-    {/* Layout principal */}
 
     <div className="product-layout">
 
-      {/* =======================
-          GALERÍA
-      ======================= */}
+      {/* GALERÍA */}
 
-      <div className="product-gallery">
+      <div className="product-left">
 
-        <div className="gallery-thumbnails">
+        <div className="product-gallery">
 
-          {product.images.map((image, index) => (
+          <div className="gallery-thumbnails">
 
-            <button
-              key={index}
-              type="button"
-              className={`thumbnail ${
-                selectedImage === image ? "active" : ""
-              }`}
-              onClick={() => setSelectedImage(image)}
-            >
-              <img
-                src={image}
-                alt={`${product.name} ${index + 1}`}
-              />
-            </button>
+            {(product.imagenes || [product.imagen]).map((image, index) => (
+              <button
+                key={index}
+                type="button"
+                className={`thumbnail ${
+                  selectedImage === image ? "active" : ""
+                }`}
+                onClick={() => setSelectedImage(image)}
+              >
 
-          ))}
+                <img
+                  src={image}
+                  alt={`${product.nombre} ${index + 1}`}
+                />
+
+              </button>
+
+            ))}
+
+          </div>
+
+          <div className="gallery-main">
+
+            <img
+              className="main-image"
+              src={selectedImage}
+              alt={product.nombre}
+            />
+
+          </div>
 
         </div>
 
-        <div className="gallery-main">
+        {/* DESCRIPCIÓN */}
 
-          <img
-            className="main-image"
-            src={selectedImage}
-            alt={product.name}
-          />
+        <section className="product-extra">
 
-        </div>
+          <section className="product-description">
+
+            <h2>Descripción</h2>
+
+            <p>
+  Zapatilla 100% original confeccionada con materiales de alta calidad.
+  Ideal para uso diario, colección y estilo urbano.
+</p>
+
+          </section>
+
+          <section className="product-features">
+
+            <h2>Características</h2>
+
+            <ul>
+              <li>Producto 100% nuevo.</li>
+              <li>Calidad premium.</li>
+              <li>Incluye caja original.</li>
+              <li>Plantilla acolchada.</li>
+              <li>Ideal para uso casual y urbano.</li>
+            </ul>
+
+          </section>
+
+          <section className="product-shipping-info">
+
+            <h2>Envíos</h2>
+
+            <p>
+              Realizamos envíos a todo el Perú.
+              <br />
+              Tiempo estimado: 24 - 72 horas.
+            </p>
+
+          </section>
+
+        </section>
 
       </div>
 
-      {/* =======================
-          PANEL DERECHO
-      ======================= */}
+      {/* INFORMACIÓN */}
 
       <aside className="product-info">
 
@@ -130,62 +136,42 @@ function ProductDetails({ id }) {
         </button>
 
         <span className="brand">
-          {product.brand}
+          {product.marca}
         </span>
 
-        <h1>{product.name}</h1>
+        <h1>{product.nombre}</h1>
 
         <p className="subtitle">
-          Sneakers
+          {product.categoria}
         </p>
 
         <h2 className="price">
-          S/. {product.price}
+          S/. {product.precio}
         </h2>
-
-        <div className="info-group">
-
-          <label>Color</label>
-
-          <div className="colors">
-
-            {product.colors.map((color) => (
-
-              <button
-                key={color}
-                type="button"
-                className={`color ${
-                  selectedColor === color ? "active" : ""
-                }`}
-                style={{ backgroundColor: color }}
-                onClick={() => setSelectedColor(color)}
-              />
-
-            ))}
-
-          </div>
-
-        </div>
 
         <div className="info-group">
 
           <label>Talla</label>
 
-          <select className="size-select" defaultValue="">
+<select
+  className="size-select"
+  value={selectedSize}
+  onChange={(e) => setSelectedSize(e.target.value)}
+>
+  <option value="">
+    Selecciona una talla
+  </option>
 
-            <option value="" disabled>
-              Selecciona una talla
-            </option>
+  {[38, 39, 40, 41, 42, 43].map((size) => (
+    <option
+      key={size}
+      value={size}
+    >
+      {size}
+    </option>
+  ))}
 
-            {product.sizes.map((size) => (
-
-              <option key={size} value={size}>
-                {size}
-              </option>
-
-            ))}
-
-          </select>
+</select>
 
         </div>
 
@@ -196,31 +182,49 @@ function ProductDetails({ id }) {
         <div className="product-notes">
 
           <div className="stock">
-            <strong>Última unidad disponible</strong>
+            <strong>Stock disponible</strong>
           </div>
 
           <div className="shipping">
+
             <FaTruck />
+
             <div>
+
               <strong>Entrega estimada</strong>
+
               <span>2 - 5 días hábiles</span>
+
             </div>
+
           </div>
 
           <div className="returns">
+
             <FaShieldAlt />
+
             <div>
+
               <strong>Cambios y devoluciones</strong>
+
               <span>Hasta 7 días después de la compra.</span>
+
             </div>
+
           </div>
 
           <div className="payments">
+
             <FaCreditCard />
+
             <div>
+
               <strong>Métodos de pago</strong>
+
               <span>Visa · Mastercard · Yape · Plin</span>
+
             </div>
+
           </div>
 
         </div>
@@ -229,54 +233,9 @@ function ProductDetails({ id }) {
 
     </div>
 
-    {/* =======================
-        INFORMACIÓN
-    ======================= */}
-
-    <section className="product-extra">
-
-      <section className="product-description">
-
-        <h2>Descripción</h2>
-
-        <p>
-          {product.description}
-        </p>
-
-      </section>
-
-      <section className="product-features">
-
-        <h2>Características</h2>
-
-        <ul>
-
-          <li>Exterior de cuero premium.</li>
-          <li>Suela de goma resistente.</li>
-          <li>Tecnología Air.</li>
-          <li>Plantilla acolchada.</li>
-          <li>Uso casual y deportivo.</li>
-
-        </ul>
-
-      </section>
-
-      <section className="product-shipping-info">
-
-        <h2>Envíos</h2>
-
-        <p>
-          Realizamos envíos a todo el Perú.
-          <br />
-          Tiempo estimado: 24 - 72 horas.
-        </p>
-
-      </section>
-
-    </section>
-
   </section>
 );
+
 }
 
 export default ProductDetails;

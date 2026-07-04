@@ -1,5 +1,5 @@
 .navbar{
-    position: sticky;
+    position:sticky;
     top:0;
     z-index:1000;
 
@@ -12,58 +12,61 @@
     padding:0 60px;
 
     background:#fff;
-
     border-bottom:1px solid #ececec;
 
     font-family:"Montserrat",sans-serif;
 }
+/* ===========================
+   LOGO
+=========================== */
 
 .logo{
+    width:180px;
 
     display:flex;
     align-items:center;
-}
-
-.logo img{
-
-    width:58px;
-    height:58px;
-
-    border-radius:50%;
-    object-fit:cover;
-}
-
-.nav-links{
-
-    display:flex;
-    gap:45px;
-
-}
-
-.nav-links a{
-
-    position:relative;
 
     text-decoration:none;
 
+    flex-shrink:0;
+}
+
+
+.logo h2{
+    font-size:2rem;
+    font-weight:900;
+    color:#111;
+}
+
+/* ===========================
+   NAV LINKS
+=========================== */
+
+.nav-links{
+    flex:1;
+
+    display:flex;
+    justify-content: flex-end;
+    gap:45px;
+}
+
+.nav-links a{
+    position:relative;
+
+    text-decoration:none;
     color:#111;
 
+    font-size:16px;
     font-weight:600;
 
-    font-size:16px;
-
     transition:.3s;
-
 }
 
 .nav-links a:hover{
-
     color:#666;
-
 }
 
 .nav-links a::after{
-
     content:"";
 
     position:absolute;
@@ -77,48 +80,44 @@
     background:#000;
 
     transition:.3s;
-
 }
 
 .nav-links a:hover::after,
 .nav-links .active::after{
-
     width:100%;
-
 }
 
 .nav-links .active{
-
     color:#000;
-
 }
+
+/* ===========================
+   ACTIONS
+=========================== */
 
 .nav-icons{
 
+    width:700px;
+
     display:flex;
+    justify-content:flex-end;
+    align-items:center;
     gap:12px;
 
+    flex-shrink:0;
 }
 
 .nav-icons button{
 
     width:42px;
     height:42px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:#f5f5f5;
-
     display:flex;
     justify-content:center;
     align-items:center;
-
+    border:none;
     font-size:20px;
-
     cursor:pointer;
-
+    background-color: transparent;
     transition:.3s;
 }
 
@@ -128,4 +127,71 @@
 
     transform:translateY(-2px);
 
+}
+
+/* ===========================
+   SEARCH
+=========================== */
+
+.search-box{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    width:240px;
+    height:42px;
+
+    padding:0 14px;
+
+    border-bottom:1px solid #111;
+
+    background:#fff;
+
+    flex-shrink:0;
+
+    transition:width .35s ease;
+}
+
+.search-box.active{
+
+    width:500px;
+
+}
+
+.search-icon{
+
+    font-size:18px;
+    color:#666;
+
+    flex-shrink:0;
+
+}
+
+.search-input{
+
+    width:100%;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+
+    color:#111;
+
+    font-size:14px;
+    font-family:inherit;
+
+}
+
+.search-input::placeholder{
+
+    color:#888;
+
+}
+
+
+
+.search-close:hover{
+    color:#111;
 }

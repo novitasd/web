@@ -19,7 +19,7 @@ function Footer() {
 
         <div className="footer-brand">
 
-          <h2>SAMU.PE</h2>
+          <h2>TNIS.PE</h2>
 
           <p>
             Descubre las mejores zapatillas para cada estilo.
@@ -101,7 +101,7 @@ function Footer() {
       <div className="footer-bottom">
 
         <p>
-          © 2026 <strong>SAMU.PE</strong> · Todos los derechos reservados.
+          © 2026 <strong>TNIS.PE</strong> · Todos los derechos reservados.
         </p>
 
       </div>

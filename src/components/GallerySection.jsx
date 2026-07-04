@@ -4,24 +4,24 @@ const gallery = [
   {
     id: 1,
     title: "Jordan Collection",
-    image: "https://cdn-images.farfetch-contents.com/15/05/76/88/15057688_25617121_2048.jpg",
+    image: "https://i.pinimg.com/1200x/02/02/c6/0202c6b33542551e612e8cfaeacb1cc7.jpg",
   },
   {
     id: 2,
     title: "Street Style",
-    image: "https://cdn-images.farfetch-contents.com/20/25/53/98/20255398_51237620_1000.jpg",
+    image: "https://i.pinimg.com/1200x/ab/63/f8/ab63f8e54442be2c8bc88bd7837acb56.jpg",
   },
   {
     id: 3,
     title: "Running",
-    image: "https://cdn-images.farfetch-contents.com/28/19/57/99/28195799_58273903_1000.jpg",
+    image: "https://i.pinimg.com/vwebpf/1200x/b4/5f/84/b45f84cf75019db3280a51086854c9fd.webp",
   },
 ];
 
 function GallerySection() {
   return (
     <section className="gallery">
-
+s
       <div className="gallery-header">
 
         <span>STREET GALLERY</span>

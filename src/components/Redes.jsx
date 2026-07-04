@@ -28,7 +28,7 @@ function TopBar() {
       </div>
 
       <div className="topbar-message">
-        🚚 Envíos a todo el Perú · Calidad PK Premium
+        Envíos a todo el Perú · Calidad PK 
       </div>
 
       <div className="topbar-contact">

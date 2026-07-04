@@ -1,10 +1,10 @@
 import "./StyleCategories.css";
 
-import jordan from "../assets/categorias/jordan.png";
-import nike from "../assets/categorias/nike.png";
-import airmax from "../assets/categorias/airmax.png";
-import dunk from "../assets/categorias/dunk.png";
-import limitados from "../assets/categorias/limitados.png";
+import nike from "../assets/categorias/nike.jpg";
+import asics from "../assets/categorias/asics.jpg";
+import adidas from "../assets/categorias/adidas.jpg";
+import jordan from "../assets/categorias/jordan.jpg"
+import news from "../assets/categorias/new.jpg";
 
 const categories = [
   {
@@ -19,18 +19,18 @@ const categories = [
   },
   {
     id: 3,
-    name: "Air Max",
-    image: airmax,
+    name: "New balance",
+    image: news,
   },
   {
     id: 4,
-    name: "Dunk",
-    image: dunk,
+    name: "Asics",
+    image: asics,
   },
   {
     id: 5,
-    name: "Edición Limitada",
-    image: limitados,
+    name: "Adidas",
+    image: adidas,
   },
 ];
 

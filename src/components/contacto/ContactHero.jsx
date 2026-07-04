@@ -1,5 +1,5 @@
 import "./ContactHero.css";
-
+import imgs from "../../assets/categorias/jordan.png"
 function ContactHero() {
   return (
     <section className="contact-hero">
@@ -38,8 +38,8 @@ function ContactHero() {
       <div className="contact-image">
 
         <img
-          src="/images/contact-shoe.png"
-          alt="Jordan"
+          src={imgs}
+          alt="jordan"
         />
 
       </div>

@@ -49,7 +49,7 @@
     scroll-snap-type: x mandatory;
 
     padding-bottom: 15px;
-
+    padding: 30px 0 0 30px;
 }
 
 .style-slider::-webkit-scrollbar{
@@ -114,9 +114,9 @@
 
 .style-card:hover .style-image{
 
-    transform: translateY(-6px);
+    transform: translateY(-2px);
 
-    box-shadow: 0 18px 35px rgba(0,0,0,.12);
+    box-shadow: 0 18px 40px rgba(48, 46, 46, 0.521);
 
 }
 
