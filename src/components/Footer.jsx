@@ -101,7 +101,7 @@ function Footer() {
       <div className="footer-bottom">
 
         <p>
-          © 2026 <strong>TNIS.PE</strong> · Todos los derechos reservados.
+          © 2026 <strong>TNIS.PE</strong> · Todos los derechos reservados por sandro y chatgpt.
         </p>
 
       </div>

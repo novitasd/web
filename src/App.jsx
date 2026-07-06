@@ -22,9 +22,15 @@ function App() {
 
         <Route path="/catalogo" element={<Catalogo />} />
 
+        {/* NUEVA RUTA PARA FILTRAR POR CATEGORÍA */}
+        <Route
+          path="/catalogo/:categoria"
+          element={<Catalogo />}
+        />
+
         <Route path="/contacto" element={<Contacto />} />
 
-        {/* Producto normal */}
+        {/* Producto */}
         <Route
           path="/producto/:id"
           element={<ProductPage />}
