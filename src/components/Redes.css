@@ -82,3 +82,11 @@
     font-size:17px;
 
 }
+@media (max-width:768px){
+    .topbar-message{
+        display: none;
+    }
+    .topbar-contact span{
+        display: none;
+    }
+}

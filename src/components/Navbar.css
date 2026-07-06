@@ -41,7 +41,9 @@
 /* ===========================
    NAV LINKS
 =========================== */
-
+.close-menu{
+    display: none;
+}
 .nav-links{
     flex:1;
 
@@ -194,4 +196,127 @@
 
 .search-close:hover{
     color:#111;
+}
+
+.menu-btn{
+    display:none;
+
+    width:42px;
+    height:42px;
+
+    border:none;
+    background:none;
+
+    font-size:26px;
+
+    cursor:pointer;
+}
+@media (max-width:768px){
+.close-menu{
+    display: block;
+}
+.navbar{
+
+    padding:0 20px;
+
+}
+
+.menu-btn{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+}
+
+.logo{
+
+    width:auto;
+
+}
+
+.logo h2{
+
+    font-size:1.6rem;
+
+}
+
+.nav-icons{
+
+    width:auto;
+
+}
+
+.search-box{
+
+    display:none;
+
+}
+
+.nav-icons button:first-of-type{
+
+    display:none;
+
+}
+
+/*=========================
+MENU
+==========================*/
+
+.nav-links{
+
+    position:fixed;
+
+    top:0;
+    left:-100%;
+
+    width:270px;
+    height:100vh;
+
+    background:#fff;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:flex-start;
+    align-items:flex-start;
+
+    gap:30px;
+
+    padding:100px 35px;
+
+    transition:.35s;
+
+    box-shadow:5px 0 25px rgba(0,0,0,.08);
+
+}
+
+.nav-links.show{
+
+    left:0;
+
+}
+
+.close-menu{
+
+    position:absolute;
+
+    top:30px;
+    right:25px;
+
+    border:none;
+    background:none;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+}
+
+.nav-links a{
+
+    font-size:22px;
+
+}
+
 }

@@ -5,28 +5,48 @@ import {
   FiShoppingBag,
   FiUser,
   FiX,
+  FiMenu
 } from "react-icons/fi";
 import "./Navbar.css";
 
 function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
-
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <header className="navbar">
+      <button
+  className="menu-btn"
+  onClick={() => setMenuOpen(true)}
+>
+  <FiMenu />
+</button>
 
       <Link to="/" className="logo">
         <h2>TNIS.PE</h2>
       </Link>
 
-      <nav className="nav-links">
+     <nav className={`nav-links ${menuOpen ? "show" : ""}`}>
 
-        <NavLink to="/">Inicio</NavLink>
+    <button
+        className="close-menu"
+        onClick={() => setMenuOpen(false)}
+    >
+        <FiX />
+    </button>
 
-        <NavLink to="/catalogo">Catálogo</NavLink>
+    <NavLink to="/" onClick={() => setMenuOpen(false)}>
+        Inicio
+    </NavLink>
 
-        <NavLink to="/contacto">Contacto</NavLink>
+    <NavLink to="/catalogo" onClick={() => setMenuOpen(false)}>
+        Catálogo
+    </NavLink>
 
-      </nav>
+    <NavLink to="/contacto" onClick={() => setMenuOpen(false)}>
+        Contacto
+    </NavLink>
+
+</nav>
 
       <div className="nav-icons">
 
