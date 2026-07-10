@@ -3,7 +3,7 @@
 =========================== */
 
 .explore3d {
-    padding: 70px 6%;
+    padding: 100px 10%;
     background: #fff
 }
 
@@ -17,14 +17,24 @@
     gap: 20px;
 }
 
-.explore3d-slider {
-    flex: 1;
-    display: flex;
-    gap: 25px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    padding: 10px 5px 20px;
+.explore3d-slider{
+
+    flex:1;
+    padding: 10px 0;
+    display:flex;
+
+    gap:40px;
+
+    overflow-x:auto;
+
+    scroll-behavior:smooth;
+
+    scroll-snap-type:x proximity;
+
+    scrollbar-width:none;
+
+    -ms-overflow-style:none;
+
 }
 
 .explore3d-slider::-webkit-scrollbar {
@@ -35,16 +45,25 @@
    CARD
 =========================== */
 
-.product3d-card {
-    min-width: 330px;
-    background: #fff;
-    border-radius: 20px;
-    overflow: hidden;
-    scroll-snap-align: start;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, .05);
-    transition: .35s ease;
-}
+.product3d-card{
 
+    flex: 0 0 calc((100% - 100px) / 3);
+
+    min-width:0;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    scroll-snap-align:start;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+
+    transition:.35s ease;
+
+}
 .product3d-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 45px rgba(0, 0, 0, .12);
@@ -56,7 +75,7 @@
 
 .product-image {
     position: relative;
-    height: 260px;
+    height: 400px;
     background: #f7f7f7;
 
     display: flex;
@@ -210,8 +229,10 @@
         display: none;
     }
 
-    .product3d-card {
-        min-width: 280px;
+    .product3d-card{
+
+        flex:0 0 280px;
+
     }
 
     .product-image {
@@ -226,8 +247,10 @@
         padding: 50px 20px;
     }
 
-    .product3d-card {
-        min-width: 250px;
+     .product3d-card{
+
+        flex:0 0 82%;
+
     }
 
     .product-info h3 {

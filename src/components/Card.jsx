@@ -6,7 +6,7 @@ function Shoe() {
   return (
     <primitive
       object={scene}
-      scale={11}
+      scale={7}
       position={[0, -1, 0]} // 👈 baja el modelo
     />
   );

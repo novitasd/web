@@ -9,6 +9,8 @@ import GallerySection from "../components/GallerySection.jsx";
 import StyleCategories from "../components/StyleCategories.jsx";
 import "./Home.css";
 
+import { Link } from "react-router-dom";
+
 function Home() {
   return (
     <>
@@ -41,14 +43,13 @@ function Home() {
   </p>
 
   <div className="heroButtons">
+     <a className="btnPrimary" href="https://wa.me/51902824286">
+       Comprar ahora
+     </a>
 
-    <button className="btnPrimary">
-      Comprar ahora
-    </button>
-
-    <button className="btnSecondary">
-      Explorar catálogo
-    </button>
+    <Link to="/catalogo" className="btnSecondary">
+  Explorar catálogo
+</Link>
 
   </div>
 </div>

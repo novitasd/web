@@ -125,3 +125,53 @@
 .item button:active{
     transform:translateY(-1px) scale(.98);
 }
+
+@media (max-width:992px){
+
+.sliderCategorias{
+    padding:60px 35px;
+}
+
+.slider{
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+}
+
+.sliderHeader h2{
+    font-size:38px;
+}
+
+.item img{
+    height:250px;
+}
+
+}
+
+@media (max-width:768px){
+
+.sliderCategorias{
+    padding:40px 20px;
+}
+
+.sliderHeader{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:20px;
+}
+
+.sliderHeader h2{
+    font-size:34px;
+    line-height:1.1;
+}
+
+.slider{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.item img{
+    height:170px;
+}
+
+}

@@ -1,5 +1,6 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 import "./Explore3D.css";
 
 import jordan from "../assets/categorias/jordan.png";
@@ -36,26 +37,70 @@ const products = [
     price: "699",
     image: dunk,
   },
+  {
+    id: 5,
+    name: "Air Jordan 4 Black Cat",
+    category: "Jordan",
+    price: "899",
+    image: jordan,
+  },
+  {
+    id: 6,
+    name: "Nike Air Force 1",
+    category: "Nike",
+    price: "649",
+    image: nike,
+  },
+  {
+    id: 7,
+    name: "Nike Air Max",
+    category: "Air Max",
+    price: "799",
+    image: airmax,
+  },
+  {
+    id: 8,
+    name: "Nike Dunk Low",
+    category: "Dunk",
+    price: "699",
+    image: dunk,
+  },
 ];
 
-const Explore3D = () => {
+export default function Explore3D() {
+  const sliderRef = useRef(null);
+
+  const scroll = (direction) => {
+    const slider = sliderRef.current;
+
+    if (!slider) return;
+
+    slider.scrollBy({
+      left: direction * (slider.clientWidth * 0.85),
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section className="explore3d">
       <div className="explore3d-slider-wrapper">
 
-        <button className="slider-arrow left">
+        <button
+          className="slider-arrow"
+          onClick={() => scroll(-1)}
+        >
           <FaArrowLeft />
         </button>
 
-        <div className="explore3d-slider">
+        <div
+          className="explore3d-slider"
+          ref={sliderRef}
+        >
           {products.map((product) => (
             <div className="product3d-card" key={product.id}>
               <div className="product-image">
                 <img src={product.image} alt={product.name} />
-
-                <span className="badge3d">
-                  3D
-                </span>
+                <span className="badge3d">3D</span>
               </div>
 
               <div className="product-info">
@@ -76,19 +121,14 @@ const Explore3D = () => {
           ))}
         </div>
 
-        <button className="slider-arrow right">
+        <button
+          className="slider-arrow"
+          onClick={() => scroll(1)}
+        >
           <FaArrowRight />
         </button>
 
       </div>
-
-      <div className="slider-dots">
-        <span className="active"></span>
-        <span></span>
-        <span></span>
-      </div>
     </section>
   );
-};
-
-export default Explore3D;
+}

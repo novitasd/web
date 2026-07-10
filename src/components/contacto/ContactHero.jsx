@@ -1,5 +1,5 @@
 import "./ContactHero.css";
-import imgs from "../../assets/categorias/jordan.png"
+import imgs from "../../assets/categorias/contacto.png"
 function ContactHero() {
   return (
     <section className="contact-hero">

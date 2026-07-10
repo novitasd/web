@@ -1,7 +1,7 @@
 import "./StyleCategories.css";
 
 import nike from "../assets/categorias/nike.jpg";
-import asics from "../assets/categorias/asics.jpg";
+import asics from "../assets/categorias/asisc.png";
 import adidas from "../assets/categorias/adidas.jpg";
 import jordan from "../assets/categorias/jordan.jpg"
 import news from "../assets/categorias/new.jpg";

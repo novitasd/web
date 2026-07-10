@@ -101,13 +101,10 @@
 }
 
 .heroButtons{
-
     display:flex;
-
     gap:20px;
-
     margin-bottom:60px;
-
+    align-items: center;
 }
 
 .btnPrimary{
@@ -127,6 +124,7 @@
     cursor:pointer;
 
     transition:.3s;
+    text-decoration: none;
 
 }
 
@@ -151,6 +149,8 @@
     cursor:pointer;
 
     transition:.3s;
+    text-decoration: none;
+    text-align: center;
 
 }
 
