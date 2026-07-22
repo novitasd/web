@@ -32,8 +32,8 @@ function App() {
 
         {/* Producto */}
         <Route
-          path="/producto/:id"
-          element={<ProductPage />}
+            path="/producto/:slug"
+            element={<ProductPage />}
         />
 
       </Routes>

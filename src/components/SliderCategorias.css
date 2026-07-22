@@ -132,10 +132,6 @@
     padding:60px 35px;
 }
 
-.slider{
-    grid-template-columns:repeat(2,1fr);
-    gap:30px;
-}
 
 .sliderHeader h2{
     font-size:38px;
@@ -166,12 +162,11 @@
 
 .slider{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
     gap:20px;
 }
 
 .item img{
-    height:170px;
+    height:350px;
 }
 
 }

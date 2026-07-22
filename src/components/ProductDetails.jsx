@@ -6,28 +6,34 @@ import {
   FaCreditCard,
 } from "react-icons/fa";
 
-import productos from "../data/productos";
+import { getProductBySlug } from "../services/product.service";
 import "./ProductDetails.css";
 
-function ProductDetails({ id }) {
+function ProductDetails({ slug }) {
   const [product, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
+  const [selectedStock, setSelectedStock] = useState(null);
 
 useEffect(() => {
-  const productoEncontrado = productos.find(
-    (item) => item.id === Number(id)
-  );
+  async function cargarProducto() {
+    try {
+      const response = await getProductBySlug(slug);
 
-  if (productoEncontrado) {
-    setProduct(productoEncontrado);
+      const producto = response.product;
 
-    setSelectedImage(
-      productoEncontrado.imagenes?.[0] ||
-      productoEncontrado.imagen
-    );
+      setProduct(producto);
+
+      if (producto.images?.length > 0) {
+        setSelectedImage(producto.images[0].url);
+      }
+    } catch (error) {
+      console.error("Error cargando producto:", error);
+    }
   }
-}, [id]);
+
+  cargarProducto();
+}, [slug]);
 
   if (!product) {
     return <h2>Cargando producto...</h2>;
@@ -36,7 +42,7 @@ useEffect(() => {
  <section className="product-details">
 
   <div className="breadcrumb">
-    Inicio / {product.categoria} / {product.nombre}
+    Inicio / {product.category?.name} / {product.name}
   </div>
 
   <div className="product-layout">
@@ -49,18 +55,18 @@ useEffect(() => {
 
         <div className="gallery-thumbnails">
 
-          {(product.imagenes || [product.imagen]).map((image, index) => (
+           {product.images.map((image) => (
             <button
-              key={index}
+              key={image.id}
               type="button"
               className={`thumbnail ${
-                selectedImage === image ? "active" : ""
+                selectedImage === image.url ? "active" : ""
               }`}
-              onClick={() => setSelectedImage(image)}
+              onClick={() => setSelectedImage(image.url)}
             >
               <img
-                src={image}
-                alt={`${product.nombre} ${index + 1}`}
+                src={image.url}
+                alt={product.name}
               />
             </button>
           ))}
@@ -72,7 +78,7 @@ useEffect(() => {
           <img
             className="main-image"
             src={selectedImage}
-            alt={product.nombre}
+            alt={product.name}
           />
 
         </div>
@@ -90,17 +96,17 @@ useEffect(() => {
       </button>
 
       <span className="brand">
-        {product.marca}
+        {product.brand?.name}
       </span>
 
-      <h1>{product.nombre}</h1>
+      <h1>{product.name}</h1>
 
       <p className="subtitle">
-        {product.categoria}
+         {product.category?.name}
       </p>
 
       <h2 className="price">
-        S/. {product.precio}
+        S/. {product.price}
       </h2>
 
       <div className="info-group">
@@ -110,18 +116,28 @@ useEffect(() => {
         <select
           className="size-select"
           value={selectedSize}
-          onChange={(e) => setSelectedSize(e.target.value)}
+          onChange={(e) => {
+  const sizeId = e.target.value;
+
+  setSelectedSize(sizeId);
+
+  const talla = product.sizes.find(
+    (item) => item.sizeId === sizeId
+  );
+
+  setSelectedStock(talla ? talla.stock : null);
+}}
         >
           <option value="">
             Selecciona una talla
           </option>
 
-          {[38, 39, 40, 41, 42, 43].map((size) => (
+          {product.sizes.map((size) => (
             <option
-              key={size}
-              value={size}
+              key={size.id}
+              value={size.sizeId}
             >
-              {size}
+              {size.size}
             </option>
           ))}
 
@@ -129,15 +145,30 @@ useEffect(() => {
 
       </div>
 
-      <button className="buy-btn">
-        Añadir al carrito
-      </button>
+      <button
+  className="buy-btn"
+  disabled={selectedStock === 0}
+>
+  {selectedStock === 0
+    ? "Sin stock"
+    : "Añadir al carrito"}
+</button>
 
       <div className="product-notes">
 
-        <div className="stock">
-          <strong>Stock disponible</strong>
-        </div>
+      <div className="stock">
+
+  <strong>Stock disponible</strong>
+
+  {selectedStock !== null && (
+    <p>
+      {selectedStock > 0
+        ? `${selectedStock} pares disponibles`
+        : "Agotado"}
+    </p>
+  )}
+
+</div>
 
         <div className="shipping">
 
@@ -147,7 +178,7 @@ useEffect(() => {
 
             <strong>Entrega estimada</strong>
 
-            <span>2 - 5 días hábiles</span>
+            <span> 1 - 3 días hábiles</span>
 
           </div>
 
@@ -161,7 +192,7 @@ useEffect(() => {
 
             <strong>Cambios y devoluciones</strong>
 
-            <span>Hasta 7 días después de la compra.</span>
+            <span> Hasta 1 dia.</span>
 
           </div>
 
@@ -175,7 +206,7 @@ useEffect(() => {
 
             <strong>Métodos de pago</strong>
 
-            <span>Visa · Mastercard · Yape · Plin</span>
+            <span> Visa · Yape · Plin</span>
 
           </div>
 
@@ -190,10 +221,7 @@ useEffect(() => {
 
       <h2>Descripción</h2>
 
-      <p>
-        Zapatilla 100% original confeccionada con materiales de alta calidad.
-        Ideal para uso diario, colección y estilo urbano.
-      </p>
+      <p>{product.description || "Este producto no tiene descripción."}</p>
 
     </section>
 
@@ -218,7 +246,7 @@ useEffect(() => {
       <p>
         Realizamos envíos a todo el Perú.
         <br />
-        Tiempo estimado: 24 - 72 horas.
+        Tiempo estimado: 24 horas.
       </p>
 
     </section>
