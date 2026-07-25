@@ -7,6 +7,7 @@ import {
 } from "react-icons/fa";
 
 import { getProductBySlug } from "../services/product.service";
+import { useCart } from "../context/CartContext";
 import "./ProductDetails.css";
 
 function ProductDetails({ slug }) {
@@ -14,6 +15,7 @@ function ProductDetails({ slug }) {
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedStock, setSelectedStock] = useState(null);
+ const { cart, addToCart } = useCart();
 
 useEffect(() => {
   async function cargarProducto() {
@@ -36,8 +38,87 @@ useEffect(() => {
 }, [slug]);
 
   if (!product) {
-    return <h2>Cargando producto...</h2>;
+    return <h2>Cargando producto...</h2>; }
+
+    
+    const selectedSizeData = product.sizes.find(
+  (item) => item.sizeId === selectedSize
+);
+
+const cartItem = cart.find(
+  (item) =>
+    item.productId === product.id &&
+    item.sizeId === selectedSize
+);
+
+const quantityInCart = cartItem?.quantity ?? 0;
+
+const realStock = selectedSizeData
+  ? Number(selectedSizeData.stock)
+  : 0;
+
+const availableStock = Math.max(
+  0,
+  realStock - quantityInCart
+);
+  
+
+const handleAddToCart = () => {
+  if (!selectedSize) {
+    alert("Selecciona una talla.");
+    return;
   }
+
+  const selectedSizeData = product.sizes.find(
+    (item) => item.sizeId === selectedSize
+  );
+
+  if (!selectedSizeData) {
+    alert("Talla no encontrada.");
+    return;
+  }
+
+  const cartItem = cart.find(
+    (item) =>
+      item.productId === product.id &&
+      item.sizeId === selectedSizeData.sizeId
+  );
+
+  const quantityInCart =
+    cartItem?.quantity ?? 0;
+
+  const stock =
+    Number(selectedSizeData.stock);
+
+  const available =
+    stock - quantityInCart;
+
+  if (available <= 0) {
+    alert(
+      "Ya agregaste todo el stock disponible de esta talla."
+    );
+    return;
+  }
+
+  addToCart({
+    productId: product.id,
+    sizeId: selectedSizeData.sizeId,
+    quantity: 1,
+    stock,
+
+    product: {
+      id: product.id,
+      slug: product.slug,
+      name: product.name,
+      price: Number(product.price),
+      image: selectedImage,
+      brand: product.brand?.name,
+      size: selectedSizeData.size,
+    },
+  });
+
+  alert("Producto agregado al carrito.");
+};
   return (
  <section className="product-details">
 
@@ -132,26 +213,39 @@ useEffect(() => {
             Selecciona una talla
           </option>
 
-          {product.sizes.map((size) => (
-            <option
-              key={size.id}
-              value={size.sizeId}
-            >
-              {size.size}
-            </option>
-          ))}
+         {product.sizes.map((size) => {
+  const outOfStock = Number(size.stock) <= 0;
+
+  return (
+    <option
+      key={size.id}
+      value={size.sizeId}
+      disabled={outOfStock}
+    >
+      {size.size}
+      {outOfStock ? " — Agotado" : ""}
+    </option>
+  );
+})}
 
         </select>
 
       </div>
 
-      <button
+<button
+  type="button"
   className="buy-btn"
-  disabled={selectedStock === 0}
+  onClick={handleAddToCart}
+  disabled={
+    !selectedSize ||
+    availableStock <= 0
+  }
 >
-  {selectedStock === 0
-    ? "Sin stock"
-    : "Añadir al carrito"}
+  {!selectedSize
+    ? "Selecciona una talla"
+    : availableStock <= 0
+      ? "Agotado"
+      : "Añadir al carrito"}
 </button>
 
       <div className="product-notes">

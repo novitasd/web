@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 import {
   FiSearch,
   FiShoppingBag,
@@ -12,6 +13,13 @@ import "./Navbar.css";
 function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const { cart } = useCart();
+
+const totalItems = cart.reduce(
+  (total, item) => total + item.quantity,
+  0
+);
   return (
     <header className="navbar">
       <button
@@ -81,9 +89,17 @@ function Navbar() {
           <FiUser />
         </button>
 
-        <button type="button">
-          <FiShoppingBag />
-        </button>
+         <Link to="/checkout" className="cart-button">
+
+  <FiShoppingBag />
+
+  {totalItems > 0 && (
+    <span className="cart-count">
+      {totalItems}
+    </span>
+  )}
+
+</Link>
 
       </div>
 

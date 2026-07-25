@@ -7,6 +7,7 @@ import ProductPage from "./pages/ProductPage";
 
 import Navbar from "./components/Navbar";
 import Redes from "./components/Redes";
+import Checkout from "./pages/Checkout";
 import Footer from "./components/Footer";
 
 function App() {
@@ -21,6 +22,11 @@ function App() {
         <Route path="/" element={<Home />} />
 
         <Route path="/catalogo" element={<Catalogo />} />
+         
+         <Route
+    path="/checkout"
+    element={<Checkout />}
+/>
 
         {/* NUEVA RUTA PARA FILTRAR POR CATEGORÍA */}
         <Route
