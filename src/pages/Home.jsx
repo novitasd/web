@@ -1,6 +1,3 @@
-import Navbar from "../components/Navbar.jsx";
-import Footer from "../components/Footer.jsx";
-import Redes from "../components/Redes.jsx";
 import SliderCategorias from "../components/SliderCategorias.jsx";
 import videoFondo from "../assets/video/fondoretro.mp4";
 import ShoeViewer from "../components/ShoeViewer";

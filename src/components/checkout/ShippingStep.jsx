@@ -4,6 +4,8 @@ import departamentosData from "../../data/ubigeo/departamentos.json";
 import provinciasData from "../../data/ubigeo/provincias.json";
 import distritosData from "../../data/ubigeo/distritos.json";
 
+import Dropdown from "../../components/UI/Dropdown/Dropdown";
+
 function ShippingStep({
   shippingData,
   setShippingData,
@@ -195,31 +197,16 @@ function ShippingStep({
 
         <div className="shipping-field">
 
-          <label htmlFor="department">
-            Departamento <span>*</span>
-          </label>
 
-          <select
-            id="department"
-            name="department"
-            value={shippingData.department}
-            onChange={handleDepartmentChange}
-            required
-          >
-            <option value="">
-              Selecciona un departamento
-            </option>
-
-            {departamentos.map((item) => (
-              <option
-                key={item.id}
-                value={item.departamento}
-              >
-                {item.departamento}
-              </option>
-            ))}
-
-          </select>
+           <Dropdown
+    label="Departamento"
+    placeholder="Selecciona un departamento"
+    value={shippingData.department}
+    options={departamentos}
+    getLabel={(item) => item.departamento}
+    getValue={(item) => item.departamento}
+    onChange={handleDepartmentChange}
+/>
 
         </div>
 
@@ -231,32 +218,18 @@ function ShippingStep({
 
           <div className="shipping-field">
 
-            <label htmlFor="province">
-              Provincia <span>*</span>
-            </label>
 
-            <select
-              id="province"
-              name="province"
-              value={shippingData.province}
-              onChange={handleProvinceChange}
-              disabled={!selectedDepartment}
-              required
-            >
-              <option value="">
-                Selecciona una provincia
-              </option>
 
-              {filteredProvinces.map((item) => (
-                <option
-                  key={item.id}
-                  value={item.provincia}
-                >
-                  {item.provincia}
-                </option>
-              ))}
-
-            </select>
+           <Dropdown
+  label="Provincia"
+  placeholder="Selecciona una provincia"
+  value={shippingData.province}
+  options={filteredProvinces}
+  getLabel={(item) => item.provincia}
+  getValue={(item) => item.provincia}
+  onChange={handleProvinceChange}
+  disabled={!selectedDepartment}
+/>
 
           </div>
 
@@ -264,32 +237,17 @@ function ShippingStep({
 
           <div className="shipping-field">
 
-            <label htmlFor="district">
-              Distrito <span>*</span>
-            </label>
 
-            <select
-              id="district"
-              name="district"
-              value={shippingData.district}
-              onChange={handleDistrictChange}
-              disabled={!selectedProvince}
-              required
-            >
-              <option value="">
-                Selecciona un distrito
-              </option>
-
-              {filteredDistricts.map((item) => (
-                <option
-                  key={item.id}
-                  value={item.distrito}
-                >
-                  {item.distrito}
-                </option>
-              ))}
-
-            </select>
+          <Dropdown
+  label="Distrito"
+  placeholder="Selecciona un distrito"
+  value={shippingData.district}
+  options={filteredDistricts}
+  getLabel={(item) => item.distrito}
+  getValue={(item) => item.distrito}
+  onChange={handleDistrictChange}
+  disabled={!selectedProvince}
+/>
 
           </div>
 

@@ -21,7 +21,7 @@ function TopBar() {
           <FaFacebookF />
         </a>
 
-        <a href="https://tiktok.com" target="_blank" rel="noreferrer">
+        <a href="https://www.tiktok.com/@tnisperu?is_from_webapp=1&sender_device=pc" target="_blank" rel="noreferrer">
           <FaTiktok />
         </a>
 

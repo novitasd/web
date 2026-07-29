@@ -5,6 +5,7 @@
 .style-categories{
     padding: 90px 7%;
     background: #fff;
+    text-decoration: none;
 }
 
 /*==================================
@@ -76,7 +77,7 @@
     align-items: center;
 
     cursor: pointer;
-
+    text-decoration: none;
     scroll-snap-align: start;
 
 }

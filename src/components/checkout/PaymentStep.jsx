@@ -1,10 +1,45 @@
+import { useState } from "react";
+
 import "./PaymentStep.css";
+
+import { useCart } from "../../context/CartContext";
+import { createOrder } from "../../services/order.service";
 
 function PaymentStep({
   onBack,
   shippingData,
   shippingMethod,
 }) {
+  const { cart, clearCart } = useCart();
+
+  const [loading, setLoading] = useState(false);
+
+  const handleCreateOrder = async () => {
+    try {
+      setLoading(true);
+
+      const order = await createOrder({
+        shippingData,
+        cart,
+      });
+
+     console.log("Respuesta del backend:", order);
+
+clearCart();
+
+alert("Pedido creado correctamente.");
+    } catch (error) {
+      console.error(error);
+
+      alert(
+        error.response?.data?.message ||
+          "No se pudo crear el pedido."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section className="payment-step">
 
@@ -33,6 +68,7 @@ function PaymentStep({
       <div className="payment-section">
 
         <div className="payment-section-header">
+
           <h2>Dirección de entrega</h2>
 
           <button
@@ -42,6 +78,7 @@ function PaymentStep({
           >
             Editar
           </button>
+
         </div>
 
         <div className="payment-address">
@@ -82,6 +119,7 @@ function PaymentStep({
           <div className="payment-delivery">
 
             <div>
+
               <strong>
                 Delivery a domicilio
               </strong>
@@ -89,6 +127,7 @@ function PaymentStep({
               <p>
                 Entrega en la dirección indicada.
               </p>
+
             </div>
 
             <strong>
@@ -102,6 +141,7 @@ function PaymentStep({
           <div className="payment-delivery">
 
             <div>
+
               <strong>
                 Envío por Shalom
               </strong>
@@ -110,6 +150,7 @@ function PaymentStep({
                 El costo del envío se paga al recoger
                 el pedido en la agencia.
               </p>
+
             </div>
 
             <strong>
@@ -136,6 +177,7 @@ function PaymentStep({
           <div className="payment-method">
 
             <div>
+
               <strong>
                 Pago online
               </strong>
@@ -143,6 +185,7 @@ function PaymentStep({
               <span>
                 Tarjeta, Yape y otros métodos disponibles.
               </span>
+
             </div>
 
           </div>
@@ -150,6 +193,19 @@ function PaymentStep({
         </div>
 
       </div>
+
+      {/* CONFIRMAR PEDIDO */}
+
+      <button
+        type="button"
+        className="payment-confirm"
+        onClick={handleCreateOrder}
+        disabled={loading || cart.length === 0}
+      >
+        {loading
+          ? "Procesando..."
+          : "Confirmar pedido"}
+      </button>
 
     </section>
   );

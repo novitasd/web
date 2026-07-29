@@ -1,101 +1,277 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import productos from "../data/productos";
+import { getProducts } from "../services/product.service";
 import "./SliderCategorias.css";
 
-const categorias = [
-  ...new Map(
-    productos.map((producto) => [
-      producto.categoria,
-      {
-        id: producto.id,
-        nombre: producto.categoria,
-        imagen: producto.imagen,
-      },
-    ])
-  ).values(),
-];
-
 export default function SliderCategorias() {
-  const [inicio, setInicio] = useState(0);
-  const [cantidadVisible, setCantidadVisible] = useState(3);
+
+  const sliderRef = useRef(null);
+
+  const [productos, setProductos] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+
+  // ==========================================
+  // CARGAR PRODUCTOS DESTACADOS
+  // ==========================================
 
   useEffect(() => {
-    const actualizarCantidad = () => {
-      if (window.innerWidth <= 768) {
-        setCantidadVisible(1);
-      } else if (window.innerWidth <= 1024) {
-        setCantidadVisible(2);
-      } else {
-        setCantidadVisible(3);
+
+    async function cargarDestacados() {
+
+      try {
+
+        setLoading(true);
+
+        const response = await getProducts();
+
+        const destacados = response.data.filter(
+          (producto) =>
+            producto.featured === true &&
+            producto.active === true
+        );
+
+        setProductos(destacados);
+
+      } catch (error) {
+
+        console.error(
+          "Error cargando productos destacados:",
+          error
+        );
+
+      } finally {
+
+        setLoading(false);
+
       }
-    };
 
-    actualizarCantidad();
+    }
 
-    window.addEventListener("resize", actualizarCantidad);
+    cargarDestacados();
 
-    return () => {
-      window.removeEventListener("resize", actualizarCantidad);
-    };
   }, []);
 
-  useEffect(() => {
-    if (inicio > categorias.length - cantidadVisible) {
-      setInicio(Math.max(0, categorias.length - cantidadVisible));
-    }
-  }, [cantidadVisible, inicio]);
 
-  const siguiente = () => {
-    if (inicio < categorias.length - cantidadVisible) {
-      setInicio((prev) => prev + 1);
-    }
+  // ==========================================
+  // MOVER SLIDER
+  // ==========================================
+
+  const moverSlider = (direccion) => {
+
+    const slider = sliderRef.current;
+
+    if (!slider) return;
+
+    const card = slider.querySelector(
+      ".destacadoCard"
+    );
+
+    if (!card) return;
+
+    const gap = 24;
+
+    const distancia =
+      card.offsetWidth + gap;
+
+    slider.scrollBy({
+      left:
+        direccion === "siguiente"
+          ? distancia
+          : -distancia,
+
+      behavior: "smooth",
+    });
+
   };
 
-  const anterior = () => {
-    if (inicio > 0) {
-      setInicio((prev) => prev - 1);
-    }
-  };
+
+  // ==========================================
+  // LOADING
+  // ==========================================
+
+  if (loading) {
+
+    return (
+      <section className="sliderCategorias">
+
+        <div className="sliderCategoriasContainer">
+
+          <div className="sliderHeader">
+
+            <div className="sliderTitulo">
+
+              <span className="sliderEyebrow">
+                SELECCIÓN
+              </span>
+
+              <h2>
+                Productos destacados
+              </h2>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+    );
+
+  }
+
+
+  // ==========================================
+  // NO HAY DESTACADOS
+  // ==========================================
+
+  if (productos.length === 0) {
+
+    return null;
+
+  }
+
 
   return (
+
     <section className="sliderCategorias">
-      <div className="sliderHeader">
-        <h2>Compra nuestros iconos</h2>
 
-        <div className="botones">
-          <button onClick={anterior} disabled={inicio === 0}>
-            ‹
-          </button>
+      <div className="sliderCategoriasContainer">
 
-          <button
-            onClick={siguiente}
-            disabled={inicio >= categorias.length - cantidadVisible}
-          >
-            ›
-          </button>
-        </div>
-      </div>
 
-      <div
-        className="slider"
-        style={{
-          gridTemplateColumns: `repeat(${cantidadVisible}, 1fr)`,
-        }}
-      >
-        {categorias
-          .slice(inicio, inicio + cantidadVisible)
-          .map((item) => (
-            <Link
-              key={item.id}
-              to={`/catalogo/${encodeURIComponent(item.nombre)}`}
-              className="item"
+        {/* ===================================
+            HEADER
+        =================================== */}
+
+        <div className="sliderHeader">
+
+          <div className="sliderTitulo">
+
+            <span className="sliderEyebrow">
+              SELECCIÓN
+            </span>
+
+            <h2>
+              Productos destacados
+            </h2>
+
+          </div>
+
+
+          <div className="botones">
+
+            <button
+              type="button"
+              onClick={() =>
+                moverSlider("anterior")
+              }
+              aria-label="Producto anterior"
             >
-              <img src={item.imagen} alt={item.nombre} />
-              <button>{item.nombre}</button>
-            </Link>
-          ))}
+              ←
+            </button>
+
+
+            <button
+              type="button"
+              onClick={() =>
+                moverSlider("siguiente")
+              }
+              aria-label="Producto siguiente"
+            >
+              →
+            </button>
+
+          </div>
+
+        </div>
+
+
+        {/* ===================================
+            PRODUCTOS
+        =================================== */}
+
+        <div
+          className="slider"
+          ref={sliderRef}
+        >
+
+          {productos.map((producto) => {
+
+            const imagen =
+              producto.images?.length > 0
+                ? producto.images[0].url
+                : "/no-image.png";
+
+
+            return (
+
+              <Link
+                key={producto.id}
+                to={`/producto/${producto.slug}`}
+                className="destacadoCard"
+              >
+
+
+                {/* IMAGEN */}
+
+                <div className="categoriaImagen">
+
+                  <img
+                    src={imagen}
+                    alt={producto.name}
+                    loading="lazy"
+                  />
+
+                </div>
+
+
+                {/* INFORMACIÓN */}
+
+                <div className="categoriaInfo">
+
+                  <div>
+
+                    <span className="categoriaLabel">
+
+                      {producto.brand?.name}
+
+                    </span>
+
+
+                    <h3>
+
+                      {producto.name}
+
+                    </h3>
+
+
+                    <span className="destacadoPrecio">
+
+                      S/. {producto.offerPrice || producto.price}
+
+                    </span>
+
+                  </div>
+
+
+                  <span className="categoriaArrow">
+                    →
+                  </span>
+
+                </div>
+
+              </Link>
+
+            );
+
+          })}
+
+        </div>
+
       </div>
+
     </section>
+
   );
+
 }

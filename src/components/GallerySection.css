@@ -147,7 +147,7 @@
 
 }
 
-.gallery-overlay button{
+.gallery-overlay .gallery-btn{
 
     width:max-content;
 
@@ -166,10 +166,11 @@
     cursor:pointer;
 
     transition:.3s;
+    text-decoration: none;
 
 }
 
-.gallery-overlay button:hover{
+.gallery-overlay .gallery-btn:hover{
 
     background:#111;
 

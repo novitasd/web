@@ -1,35 +1,41 @@
+import { Link } from "react-router-dom";
 import "./StyleCategories.css";
 
 import nike from "../assets/categorias/nike.jpg";
 import asics from "../assets/categorias/asisc.png";
 import adidas from "../assets/categorias/adidas.jpg";
-import jordan from "../assets/categorias/jordan.jpg"
+import jordan from "../assets/categorias/jordan.jpg";
 import news from "../assets/categorias/new.jpg";
 
-const categories = [
+const brands = [
   {
     id: 1,
     name: "Air Jordan",
+    slug: "jordan",
     image: jordan,
   },
   {
     id: 2,
     name: "Nike",
+    slug: "nike",
     image: nike,
   },
   {
     id: 3,
-    name: "New balance",
+    name: "New Balance",
+    slug: "new-balance",
     image: news,
   },
   {
     id: 4,
     name: "Asics",
+    slug: "asics",
     image: asics,
   },
   {
     id: 5,
     name: "Adidas",
+    slug: "adidas",
     image: adidas,
   },
 ];
@@ -37,25 +43,41 @@ const categories = [
 function StyleCategories() {
   return (
     <section className="style-categories">
+
       <div className="style-header">
         <span>DESCUBRE</span>
         <h2>ENCUENTRA TU ESTILO</h2>
       </div>
 
       <div className="style-slider">
-        {categories.map((category) => (
-          <div key={category.id} className="style-card">
+
+        {brands.map((brand) => (
+
+          <Link
+            key={brand.id}
+            to={`/catalogo?brand=${brand.slug}`}
+            className="style-card"
+          >
+
             <div className="style-image">
+
               <img
-                src={category.image}
-                alt={category.name}
+                src={brand.image}
+                alt={brand.name}
               />
+
             </div>
 
-            <h3>{category.name}</h3>
-          </div>
+            <h3>
+              {brand.name}
+            </h3>
+
+          </Link>
+
         ))}
+
       </div>
+
     </section>
   );
 }

@@ -5,15 +5,31 @@ import Catalogo from "./pages/Catalogo";
 import Contacto from "./pages/Contacto";
 import ProductPage from "./pages/ProductPage";
 
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar/Navbar";
 import Redes from "./components/Redes";
 import Checkout from "./pages/Checkout";
 import Footer from "./components/Footer";
 
+import ScrollToTop from "./components/ScrollToTop";
+
+import { Toaster } from "react-hot-toast";
+
 function App() {
   return (
     <BrowserRouter>
-
+      <ScrollToTop />
+        <Toaster
+    position="top-center"
+    toastOptions={{
+      duration: 2500,
+      style: {
+        borderRadius: "14px",
+        background: "#111",
+        color: "#fff",
+        padding: "14px 18px",
+      },
+    }}
+  />
       <Redes />
       <Navbar />
 

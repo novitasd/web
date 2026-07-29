@@ -59,10 +59,6 @@ function CartStep() {
         <div>
           <h1>Bolsa de compras</h1>
 
-          <span className="cart-count">
-            {totalItems}{" "}
-            {totalItems === 1 ? "producto" : "productos"}
-          </span>
         </div>
 
         <Link

@@ -46,6 +46,7 @@ const shippingMethod = getShippingMethod(shippingData);
           {step === 3 && (
             <PaymentStep
               shippingData={shippingData}
+              shippingMethod={shippingMethod}
               onBack={() => setStep(2)}
             />
           )}
