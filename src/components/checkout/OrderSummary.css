@@ -132,15 +132,43 @@
   background: #333;
 }
 
-.summary-button:disabled {
+.summary-button:disabled:not(.summary-button-disabled) {
   background: #e8e8e8;
   border-color: #e8e8e8;
-
   color: #999;
-
   cursor: not-allowed;
 }
+.summary-button-disabled{
+    position:relative;
+    display: flow-root;
 
+    background:#111 !important;
+    border-color:#111 !important;
+    color:#fff !important;
+
+    opacity:.75;
+    cursor:not-allowed;
+}
+
+.summary-soon{
+    position:absolute;
+
+    top:-10px;
+    right:14px;
+
+    padding:4px 10px;
+
+    border-radius:20px;
+
+    background:#fff;
+
+    border:1px solid #ddd;
+
+    color:#555;
+
+    font-size:11px;
+    font-weight:600;
+}
 
 /* ========================================
    INFORMACIÓN INFERIOR
@@ -223,7 +251,7 @@
 }
 
 .summary-whatsapp:hover:not(:disabled) {
-  background: #111;
+  background: #1ba851;
   color: #fff;
 }
 
@@ -233,6 +261,39 @@
   color: #aaa;
 
   cursor: not-allowed;
+}
+
+.summary-button-disabled{
+    position: relative;
+
+    cursor: not-allowed;
+
+    opacity: .65;
+
+    background: #111;
+
+    color: #fff;
+}
+
+.summary-button-disabled:hover{
+    background:#111;
+}
+
+.summary-disabled-text{
+    text-decoration: line-through;
+}
+
+.summary-button-disabled small{
+    display:block;
+
+    margin-top:6px;
+
+    font-size:12px;
+    font-weight:500;
+
+    letter-spacing:.4px;
+
+    opacity:.9;
 }
 
 /* ========================================

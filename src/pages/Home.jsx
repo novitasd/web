@@ -26,7 +26,7 @@ function Home() {
          <div className="titulo">
 
   <span className="badge">
-    @SAMU.PE
+    @TNISPERU
   </span>
 
   <h1>
@@ -53,8 +53,6 @@ function Home() {
         </div>
         <StyleCategories/>
         <SliderCategorias/>
-        <ShoeViewer />
-        <Explore3D/>
         <GallerySection/>
         
       </main>

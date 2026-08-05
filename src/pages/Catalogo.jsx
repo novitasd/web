@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import {
     Link,
     useParams,
-    useSearchParams
+    useSearchParams,
+    useNavigate,
 } from "react-router-dom";
 
 import { getProducts } from "../services/product.service";
 import "./Catalogo.css";
 import Loading from "../components/Loading/Loading";
+
+import BrandTabs from "../components/Product/BrandTabs/BrandTabs";
 
 
 function Catalogo() {
@@ -19,6 +22,7 @@ function Catalogo() {
     // ==========================
 
     const [searchParams] = useSearchParams();
+    const navigate = useNavigate();
 
     // /catalogo?brand=nike
     const brand = searchParams.get("brand");
@@ -182,7 +186,33 @@ function Catalogo() {
         }
     );
 
+    const marcas = [
+  ...new Map(
+    productos
+      .filter((p) => p.brand)
+      .map((p) => [
+        p.brand.id,
+        {
+          id: p.brand.id,
+          name: p.brand.name,
+          slug: p.brand.slug,
+        },
+      ])
+  ).values(),
+];
 
+
+function handleBrandChange(slug) {
+    const params = new URLSearchParams(searchParams);
+
+    if (slug === "all") {
+        params.delete("brand");
+    } else {
+        params.set("brand", slug);
+    }
+
+    navigate(`/catalogo?${params.toString()}`);
+}
     // ==========================
     // LOADING
     // ==========================
@@ -199,6 +229,11 @@ function Catalogo() {
     return (
 
         <section className="catalogo">
+              <BrandTabs
+        brands={marcas}
+        selectedBrand={brand || "all"}
+        onSelect={handleBrandChange}
+    />
 
             <main className="productos">
 

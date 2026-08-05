@@ -37,10 +37,10 @@ function OrderSummary({
   const handleWhatsApp = () => {
     if (cart.length === 0) return;
 
-    const phone = "51902824286";
+    const phone = "51902390955"
 
     let message =
-      ` *NUEVO PEDIDO - TNIS.PE*\n\n` +
+      ` *NUEVO PEDIDO -SAMU.PE*\n\n` +
       `Hola, quiero consultar por los siguientes productos:\n\n`;
 
     cart.forEach((item) => {
@@ -154,18 +154,33 @@ function OrderSummary({
 
       {/* CHECKOUT NORMAL */}
 
-      {step < 3 && (
-        <button
-          type="button"
-          className="summary-button"
-          onClick={onContinue}
-          disabled={cart.length === 0}
-        >
-          {step === 1
-            ? "Continuar"
-            : "Continuar al pago"}
-        </button>
-      )}
+        {step === 1 && (
+  <button
+    type="button"
+    className="summary-button summary-button-disabled"
+    disabled
+  >
+    <span className="summary-disabled-text">
+      Comprar por web
+    </span>
+
+    <small>Próximamente</small>
+  </button>
+)}
+
+{step === 2 && (
+<button
+  type="button"
+  className="summary-button summary-button-disabled"
+  disabled
+>
+  Comprar por web
+
+  <span className="summary-soon">
+    Próximamente
+  </span>
+</button>
+)}
 
       {/* WHATSAPP SOLO EN EL CARRITO */}
 

@@ -2,21 +2,16 @@
    SECCIÓN
 ======================================== */
 
-.sliderCategorias {
+.relatedSection {
   width: 100%;
-
   padding: 80px 0 85px;
-
   background: #fff;
-
   overflow: hidden;
 }
 
-.sliderCategoriasContainer {
+.relatedContainer {
   width: 100%;
-
   padding: 0 clamp(24px, 4vw, 72px);
-
   box-sizing: border-box;
 }
 
@@ -25,21 +20,19 @@
    HEADER
 ======================================== */
 
-.sliderHeader {
+.relatedHeader {
   display: flex;
-
   align-items: flex-end;
   justify-content: space-between;
-
   margin-bottom: 42px;
 }
 
-.sliderTitulo {
+.relatedTitle {
   display: flex;
   flex-direction: column;
 }
 
-.sliderEyebrow {
+.relatedEyebrow {
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -55,7 +48,7 @@
   color: #db0000;
 }
 
-.sliderEyebrow::before{
+.relatedEyebrow::before {
 
   content: "";
 
@@ -68,80 +61,111 @@
 
 }
 
-.sliderHeader h2{
+.relatedHeader h2 {
 
-    margin:0;
+  margin: 0;
 
-    font-size:clamp(42px,4vw,64px);
+  font-size: clamp(32px,3vw,46px);
 
-    font-weight:700;
+  font-weight: 650;
 
-    line-height:.95;
+  line-height: 1.05;
 
-    letter-spacing:-2.8px;
+  letter-spacing: -1.6px;
 
-    color:#111;
+  color: #111;
 
-    max-width:650px;
+  max-width: 620px;
 
 }
+
+.relatedDescription {
+
+  margin-top: 18px;
+
+  max-width: 520px;
+
+  font-size: 18px;
+
+  line-height: 1.7;
+
+  color: #6b6b6b;
+
+}
+
 
 /* ========================================
-   FLECHAS SUPERIORES
+   BOTONES
 ======================================== */
 
-.botones {
-  display: flex;
+.relatedButtons {
 
-  gap: 9px;
+  display: flex;
+  gap: 12px;
+
 }
 
-.botones button {
-  width: 46px;
-  height: 46px;
+.relatedButtons button {
+
+  width: 50px;
+  height: 50px;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
   padding: 0;
 
-  border: 1px solid #dedede;
-
+  border: 1px solid #e7e7e7;
   border-radius: 50%;
 
   background: #fff;
-
   color: #111;
 
   font-size: 18px;
+  font-weight: 500;
 
   cursor: pointer;
 
+  box-shadow:
+    0 4px 12px rgba(0,0,0,.04);
+
   transition:
-    background 0.25s ease,
-    color 0.25s ease,
-    border-color 0.25s ease,
-    transform 0.25s ease;
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease,
+    color .25s ease,
+    border-color .25s ease;
+
 }
 
-.botones button:hover {
-  background: #111;
+.relatedButtons button:hover {
 
+  background: #111;
   color: #fff;
 
   border-color: #111;
 
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 24px rgba(0,0,0,.16);
+
 }
 
+.relatedButtons button:active {
 
+  transform: scale(.95);
+
+  box-shadow:
+    0 4px 10px rgba(0,0,0,.12);
+
+}
 /* ========================================
    SLIDER
 ======================================== */
 
-.slider {
+.relatedSlider {
   display: flex;
 
   gap: 24px;
@@ -155,16 +179,16 @@
   scrollbar-width: none;
 }
 
-.slider::-webkit-scrollbar {
+.relatedSlider::-webkit-scrollbar {
   display: none;
 }
 
 
 /* ========================================
-   CARD
+   CARD BASE
 ======================================== */
 
-.categoriaCard {
+.relatedCategoryCard {
   flex: 0 0 calc((100% - 48px) / 3);
 
   min-width: 0;
@@ -180,10 +204,11 @@
 
 
 /* ========================================
-   CONTENEDOR IMAGEN
+   IMAGEN
 ======================================== */
 
-.categoriaImagen {
+.relatedImage {
+
   position: relative;
 
   width: 100%;
@@ -197,14 +222,11 @@
   background: #fff;
 
   overflow: hidden;
+
 }
 
+.relatedImage img {
 
-/* ========================================
-   IMAGEN
-======================================== */
-
-.categoriaImagen img {
   display: block;
 
   width: 82%;
@@ -215,11 +237,14 @@
   transform: scale(1);
 
   transition:
-    transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transform .5s cubic-bezier(.22,.61,.36,1);
+
 }
 
-.categoriaCard:hover .categoriaImagen img {
+.relatedCategoryCard:hover .relatedImage img {
+
   transform: scale(1.07);
+
 }
 
 
@@ -227,7 +252,8 @@
    INFORMACIÓN
 ======================================== */
 
-.categoriaInfo {
+.relatedInfo {
+
   position: relative;
 
   display: flex;
@@ -240,12 +266,11 @@
   padding: 20px 2px 0;
 
   border-top: 1px solid #ededed;
+
 }
 
+.relatedLabel {
 
-/* LABEL PEQUEÑO */
-
-.categoriaLabel {
   display: block;
 
   margin-bottom: 6px;
@@ -257,12 +282,11 @@
   letter-spacing: 1.5px;
 
   color: #999;
+
 }
 
+.relatedInfo h3 {
 
-/* NOMBRE */
-
-.categoriaInfo h3 {
   margin: 0;
 
   font-size: 20px;
@@ -271,17 +295,19 @@
 
   font-weight: 600;
 
-  letter-spacing: -0.5px;
+  letter-spacing: -.5px;
 
   color: #111;
+
 }
 
 
 /* ========================================
-   FLECHA CARD
+   FLECHA
 ======================================== */
 
-.categoriaArrow {
+.relatedArrow {
+
   width: 40px;
   height: 40px;
 
@@ -301,225 +327,56 @@
   font-size: 17px;
 
   transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    transform 0.3s ease;
+    background .3s ease,
+    color .3s ease,
+    transform .3s ease;
+
 }
 
-.categoriaCard:hover .categoriaArrow {
+.relatedCategoryCard:hover .relatedArrow {
+
   background: #111;
 
   color: #fff;
 
   transform: translateX(3px);
+
 }
-
-
 /* ========================================
-   TABLET
+   CARD
 ======================================== */
 
-@media (max-width: 1100px) {
+.relatedCard {
 
-  .sliderCategorias {
-    padding: 70px 0;
-  }
-
-  .sliderCategoriasContainer {
-    padding: 0 30px;
-  }
-
-  .categoriaCard {
-    flex: 0 0 calc((100% - 20px) / 2);
-  }
-
-  .slider {
-    gap: 20px;
-  }
-
-  .categoriaImagen {
-    height: 340px;
-  }
-}
-
-
-/* ========================================
-   MÓVIL
-======================================== */
-
-@media (max-width: 768px) {
-
-  .sliderCategorias {
-    padding: 45px 0 55px;
-  }
-
-  .sliderCategoriasContainer {
-    padding: 0;
-  }
-
-
-  /* HEADER */
-
-  .sliderHeader {
-    padding: 0 18px;
-
-    margin-bottom: 28px;
-
-    align-items: flex-end;
-  }
-
-  .sliderEyebrow {
-    margin-bottom: 7px;
-    letter-spacing: 1.7px;
-  }
-
-  .sliderHeader h2 {
-    max-width: 270px;
-
-    font-size: 23px;
-
-    line-height: 1.02;
-
-    letter-spacing: -1.3px;
-  }
-
-
-  /* OCULTAMOS FLECHAS EN MÓVIL */
-
-  .botones {
-    display: none;
-  }
-
-  /* SLIDER */
-
-  .slider {
-    gap: 14px;
-
-    padding-left: 18px;
-    padding-right: 18px;
-
-    scroll-padding-left: 18px;
-  }
-
-
-  /* CARD */
-
-  .categoriaCard {
-    flex: 0 0 82%;
-  }
-
-
-  /* IMAGEN */
-
-  .categoriaImagen {
-    height: 300px;
-  }
-
-  .categoriaImagen img {
-    width: 90%;
-    height: 90%;
-  }
-
-
-  /* INFORMACIÓN */
-
-  .categoriaInfo {
-    padding-top: 16px;
-  }
-
-  .categoriaLabel {
-    margin-bottom: 5px;
-
-    font-size: 9px;
-  }
-
-  .categoriaInfo h3 {
-    font-size: 18px;
-  }
-
-  .categoriaArrow {
-    width: 37px;
-    height: 37px;
-
-    font-size: 16px;
-  }
-}
-
-
-/* ========================================
-   MÓVIL PEQUEÑO
-======================================== */
-
-@media (max-width: 430px) {
-
-  .sliderCategorias {
-    padding: 40px 0 50px;
-  }
-
-  .sliderHeader {
-    padding: 0 16px;
-
-    margin-bottom: 24px;
-  }
-
-  .sliderHeader h2 {
-    font-size: 23px;
-
-    max-width: 240px;
-  }
-
-  .slider {
-    gap: 12px;
-
-    padding-left: 16px;
-    padding-right: 16px;
-
-    scroll-padding-left: 16px;
-  }
-
-  .categoriaCard {
-    flex: 0 0 86%;
-  }
-
-  .categoriaImagen {
-    height: 270px;
-  }
-
-  .categoriaInfo {
-    padding-top: 14px;
-  }
-
-  .categoriaInfo h3 {
-    font-size: 17px;
-  }
-
-  .categoriaArrow {
-    width: 35px;
-    height: 35px;
-  }
-}
-.destacadoCard {
     /* 4 productos visibles */
+
     flex: 0 0 calc((100% - 72px) / 4);
 
     min-width: 0;
 
     text-decoration: none;
+
     color: #111;
 
     scroll-snap-align: start;
 
     transition: opacity .25s ease;
+
 }
 
-.destacadoCard:hover {
+.relatedCard:hover {
+
     color: #111;
+
 }
 
 
-/* IMAGEN */
+/* ========================================
+   IMAGEN
+======================================== */
 
-.destacadoCard .categoriaImagen {
+.relatedCard .relatedImage {
+
     width: 100%;
     height: 350px;
 
@@ -530,25 +387,33 @@
     overflow: hidden;
 
     background: #fff;
+
 }
 
-.destacadoCard .categoriaImagen img {
+.relatedCard .relatedImage img {
+
     width: 88%;
     height: 88%;
 
     object-fit: contain;
 
     transition: transform .4s ease;
+
 }
 
-.destacadoCard:hover .categoriaImagen img {
+.relatedCard:hover .relatedImage img {
+
     transform: scale(1.05);
+
 }
 
 
-/* INFORMACIÓN */
+/* ========================================
+   INFORMACIÓN
+======================================== */
 
-.destacadoCard .categoriaInfo {
+.relatedCard .relatedInfo {
+
     border-top: 1px solid #e5e5e5;
 
     padding: 18px 2px 0;
@@ -558,9 +423,11 @@
     align-items: flex-start;
 
     gap: 15px;
+
 }
 
-.destacadoCard .categoriaLabel {
+.relatedCard .relatedLabel {
+
     display: block;
 
     margin-bottom: 7px;
@@ -573,65 +440,106 @@
     text-transform: uppercase;
 
     color: #777;
+
 }
 
-.destacadoCard h3 {
+.relatedCard h3 {
+
     margin: 0;
 
     font-size: 18px;
+
     line-height: 1.25;
 
     font-weight: 600;
 
     color: #111;
+
 }
 
-.destacadoPrecio {
+.relatedPrice {
+
     display: block;
 
     margin-top: 9px;
 
     font-size: 16px;
+
     font-weight: 600;
 
     color: #111;
+
+}
+.relatedCard:hover .relatedArrow {
+
+  background: hsla(40, 2%, 30%, 0.678);
+
+  color: #fff;
+
+
 }
 
 
-/* TABLET */
+/* ========================================
+   TABLET
+======================================== */
 
 @media (max-width: 1024px) {
 
-    .destacadoCard {
+    .relatedCard {
+
         flex: 0 0 calc((100% - 24px) / 2);
+
     }
 
-    .destacadoCard .categoriaImagen {
+    .relatedCard .relatedImage {
+
         height: 320px;
+
     }
 
 }
 
 
-/* MÓVIL */
+/* ========================================
+   MÓVIL
+======================================== */
 
 @media (max-width: 600px) {
 
-    .destacadoCard {
+    .relatedCard {
+
         /* Se ve parte del siguiente producto */
+
         flex: 0 0 84%;
+
     }
 
-    .destacadoCard .categoriaImagen {
+    .relatedCard .relatedImage {
+
         height: 300px;
-    }
 
-    .destacadoCard h3 {
+    }
+     
+    .relatedButtons{
+        display: none;
+    }
+     .relatedHeader h2 {
+        font-size: 23px;
+     }
+    .relatedDescription{
+        font-size: 14px;
+    }
+    .relatedCard h3 {
+
         font-size: 17px;
+
     }
 
-    .destacadoPrecio {
+    .relatedPrice {
+
         font-size: 15px;
+
     }
 
 }

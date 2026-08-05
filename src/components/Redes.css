@@ -1,92 +1,79 @@
 .topbar{
 
+    position:relative;
+
     height:42px;
 
-    background:#111;
+    overflow:hidden;
 
-    color:white;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:0 60px;
-
-    font-family:"Montserrat",sans-serif;
+    background:
+        linear-gradient(
+            90deg,
+            #0d0d0d 0%,
+            #1a1a1a 30%,
+            #111 70%,
+            #0d0d0d 100%
+        );
 
     border-bottom:1px solid rgba(255,255,255,.08);
 
 }
+.topbar-mascot{
 
-/* ---------- Redes ---------- */
+    position:absolute;
 
-.topbar-social{
+    left:-60px;
 
-    display:flex;
-    gap:18px;
+    bottom:0;
 
-}
+    height:38px;
 
-.topbar-social a{
+    animation:luffyWalk 18s linear infinite;
 
-    color:white;
-
-    font-size:15px;
-
-    display:flex;
-    align-items:center;
-
-    transition:.3s;
+    filter:
+        drop-shadow(0 0 8px rgba(255,255,255,.45));
 
 }
+@keyframes luffyWalk{
 
-.topbar-social a:hover{
+    0%{
 
-    color:#cfcfcf;
+        transform:
+            translateX(0)
+            translateY(0);
 
-    transform:translateY(-2px);
-
-}
-
-/* ---------- Mensaje ---------- */
-
-.topbar-message{
-
-    font-size:13px;
-
-    letter-spacing:.8px;
-
-    font-weight:500;
-
-    color:#f5f5f5;
-
-}
-
-/* ---------- Contacto ---------- */
-
-.topbar-contact{
-
-    display:flex;
-    align-items:center;
-
-    gap:8px;
-
-    font-size:14px;
-
-}
-
-.topbar-contact svg{
-
-    color:#25D366;
-
-    font-size:17px;
-
-}
-@media (max-width:768px){
-    .topbar-message{
-        display: none;
     }
-    .topbar-contact span{
-        display: none;
+
+    25%{
+
+        transform:
+            translateX(25vw)
+            translateY(-1px);
+
     }
+
+    50%{
+
+        transform:
+            translateX(50vw)
+            translateY(0);
+
+    }
+
+    75%{
+
+        transform:
+            translateX(75vw)
+            translateY(-1px);
+
+    }
+
+    100%{
+
+        transform:
+            translateX(calc(100vw + 120px))
+            translateY(0);
+
+    }
+
 }

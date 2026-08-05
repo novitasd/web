@@ -1,9 +1,4 @@
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaTiktok,
-  FaWhatsapp,
-} from "react-icons/fa";
+import walking from "../assets/lufy.svg";
 
 import "./Redes.css";
 
@@ -11,33 +6,11 @@ function TopBar() {
   return (
     <div className="topbar">
 
-      <div className="topbar-social">
-
-        <a href="https://instagram.com" target="_blank" rel="noreferrer">
-          <FaInstagram />
-        </a>
-
-        <a href="https://facebook.com" target="_blank" rel="noreferrer">
-          <FaFacebookF />
-        </a>
-
-        <a href="https://www.tiktok.com/@tnisperu?is_from_webapp=1&sender_device=pc" target="_blank" rel="noreferrer">
-          <FaTiktok />
-        </a>
-
-      </div>
-
-      <div className="topbar-message">
-        Envíos a todo el Perú · Calidad PK 
-      </div>
-
-      <div className="topbar-contact">
-
-        <FaWhatsapp />
-
-        <span>+51 902 824 286</span>
-
-      </div>
+      <img
+        src={walking}
+        alt=""
+        className="topbar-mascot"
+      />
 
     </div>
   );
