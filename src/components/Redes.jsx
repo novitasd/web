@@ -1,5 +1,4 @@
 import walking from "../assets/lufy.svg";
-
 import "./Redes.css";
 
 function TopBar() {
