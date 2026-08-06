@@ -37,7 +37,7 @@ function OrderSummary({
   const handleWhatsApp = () => {
     if (cart.length === 0) return;
 
-    const phone = "51902390955"
+    const phone = "51902824286"
 
     let message =
       ` *NUEVO PEDIDO -SAMU.PE*\n\n` +
