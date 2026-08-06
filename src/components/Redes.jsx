@@ -1,15 +1,23 @@
-import walking from "../assets/lufy.svg";
+import walking from "../assets/balon.svg";
 import "./Redes.css";
 
 function TopBar() {
   return (
     <div className="topbar">
 
-      <img
-        src={walking}
-        alt=""
-        className="topbar-mascot"
-      />
+      <div className="topbar-track">
+        <div className="topbar-runner">
+
+          <div className="speed-line"></div>
+
+          <img
+            src={walking}
+            alt="Jumpman"
+            className="topbar-mascot"
+          />
+
+        </div>
+      </div>
 
     </div>
   );
