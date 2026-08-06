@@ -9,6 +9,7 @@ import Navbar from "./components/navbar/Navbar";
 import Redes from "./components/Redes";
 import Checkout from "./pages/Checkout";
 import Footer from "./components/Footer";
+import WhatsAppFloat from "./components/WhatsAppFloat";
 
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -59,9 +60,9 @@ function App() {
         />
 
       </Routes>
-
+      <WhatsAppFloat />
       <Footer />
-
+         
     </BrowserRouter>
   );
 }

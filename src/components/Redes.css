@@ -1,106 +1,202 @@
 .topbar{
-    position: relative;
-    height: 42px;
-    overflow: hidden;
-
-    background: linear-gradient(
-        90deg,
-        #0b0b0b,
-        #1a1a1a,
-        #0b0b0b
-    );
-
-    border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-/* Contenedor que se mueve */
-.topbar-runner{
-
-    position:absolute;
-
-    left:-120px;
-
-    top:50%;
+    height:42px;
 
     display:flex;
+    justify-content:center;
+    align-items:center;
+
+    transition:background .6s ease;
+}
+
+.topbar-info{
+
+    width:min(1280px,95%);
+
+    display:grid;
+    grid-template-columns:140px 1fr 140px;
 
     align-items:center;
 
-    transform:translateY(-50%);
+}
 
-    animation:run 12s linear infinite;
+.topbar-status{
+
+    color:#fff;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+
+    opacity:.8;
 
 }
 
-/* Línea de velocidad */
+.topbar-status::before{
 
-.speed-line{
+    content:"";
 
-    width:90px;
+    display:inline-block;
 
-    height:2px;
+    width:7px;
+    height:7px;
 
-    margin-right:12px;
+    border-radius:50%;
 
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.65),
-        rgba(255,255,255,.1)
-    );
+    background:#22c55e;
 
-}
+    margin-right:8px;
 
-/* Jumpman */
-
-.topbar-mascot{
-
-    height:30px;
-
-    filter:
-        brightness(0)
-        invert(1)
-        drop-shadow(0 0 10px rgba(255,255,255,.35));
+    vertical-align:middle;
 
 }
 
-/* Movimiento */
+.buy-text{
 
-@keyframes run{
+    color:#fff;
 
-    0%{
+    text-align:center;
 
-        transform:
-            translate(-120px,-50%);
+    font-size:13px;
+
+    font-weight:600;
+
+    animation:fade .45s;
+
+}
+
+.whatsapp-btn{
+
+    justify-self:end;
+
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    padding:5px 12px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.1);
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-size:12px;
+
+    transition:.25s;
+
+}
+
+.whatsapp-btn:hover{
+
+    background:rgba(255,255,255,.15);
+
+}
+
+.whatsapp-btn svg{
+
+    color:#25D366;
+
+}
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+        transform:translateY(5px);
 
     }
 
-    45%{
+    to{
 
-        transform:
-            translate(45vw,-52%);
-
-    }
-
-    50%{
-
-        transform:
-            translate(50vw,-58%)
-            scale(1.05);
+        opacity:1;
+        transform:translateY(0);
 
     }
 
-    55%{
+}
+@media (max-width:768px){
 
-        transform:
-            translate(55vw,-52%);
+    .topbar{
+
+        height:36px;
+
+        padding:0 10px;
 
     }
 
-    100%{
+    .topbar-info{
 
-        transform:
-            translate(calc(100vw + 120px),-50%);
+        width:100%;
+
+        display:grid;
+
+        grid-template-columns:1fr auto;
+
+        align-items:center;
+
+        gap:12px;
+
+    }
+
+    /* Ocultar el estado */
+
+    .topbar-status{
+
+        display:none;
+
+    }
+
+    .buy-text{
+
+        text-align:left;
+
+        font-size:12px;
+
+        font-weight:500;
+
+        white-space:nowrap;
+
+        overflow:hidden;
+
+        text-overflow:ellipsis;
+
+    }
+
+    .whatsapp-btn{
+
+        padding:0;
+
+        width:30px;
+        height:30px;
+
+        display:flex;
+        justify-content:center;
+        align-items:center;
+
+        border:none;
+
+        background:transparent;
+
+    }
+
+    .whatsapp-btn span{
+
+        display:none;
+
+    }
+
+    .whatsapp-btn svg{
+
+        font-size:18px;
 
     }
 

@@ -1,62 +1,97 @@
-import SliderCategorias from "../components/SliderCategorias.jsx";
-import videoFondo from "../assets/video/fondoretro.mp4";
-import ShoeViewer from "../components/ShoeViewer";
-import Explore3D from "../components/Explore3D.jsx";
-import GallerySection from "../components/GallerySection.jsx";
-import StyleCategories from "../components/StyleCategories.jsx";
-import "./Home.css";
-
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import SliderCategorias from "../components/SliderCategorias.jsx";
+import StyleCategories from "../components/StyleCategories.jsx";
+import GallerySection from "../components/GallerySection.jsx";
+
+import videoFondo from "../assets/video/fondoretro.mp4";
+import heroPoster from "../assets/video/heroposter.png";
+
+import "./Home.css";
+
 function Home() {
+  const [videoReady, setVideoReady] = useState(false);
+
   return (
     <>
       <main>
         <div className="fondo">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="video-fondo"
-          >
-            <source src={videoFondo} type="video/mp4" />
-          </video>
 
-         <div className="titulo">
+          <div className="hero-media">
 
-  <span className="badge">
-    @TNISPERU
-  </span>
+            <img
+              src={heroPoster}
+              alt="Hero"
+              className={`hero-poster ${videoReady ? "hide" : ""}`}
+            />
 
-  <h1>
-    ELEVA TU <br />
-    ESTILO
-  </h1>
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              className="video-fondo"
+              onPlaying={() => {
+                setTimeout(() => {
+                  setVideoReady(true);
+                }, 250);
+              }}
+            >
+              <source
+                src={videoFondo}
+                type="video/mp4"
+              />
+            </video>
 
-  <p>
-    Las mejores zapatillas PK con acabados premium,
-    envíos a todo el Perú y modelos exclusivos.
-  </p>
+          </div>
 
-  <div className="heroButtons">
-     <a className="btnPrimary" href="https://wa.me/51902824286">
-       Comprar ahora
-     </a>
+          <div className="titulo">
 
-    <Link to="/catalogo" className="btnSecondary">
-  Explorar catálogo
-</Link>
+            <span className="badge">
+              @TNISPERU
+            </span>
 
-  </div>
-</div>
+            <h1>
+              ELEVA TU <br />
+              ESTILO
+            </h1>
+
+            <p>
+              Las mejores zapatillas PK con acabados premium,
+              envíos a todo el Perú y modelos exclusivos.
+            </p>
+
+            <div className="heroButtons">
+
+              <a
+                className="btnPrimary"
+                href="https://wa.me/51902824286"
+              >
+                Comprar ahora
+              </a>
+
+              <Link
+                to="/catalogo"
+                className="btnSecondary"
+              >
+                Explorar catálogo
+              </Link>
+
+            </div>
+
+          </div>
+
         </div>
-        <StyleCategories/>
-        <SliderCategorias/>
-        <GallerySection/>
-        
+
+        <StyleCategories />
+
+        <SliderCategorias />
+
+        <GallerySection />
+
       </main>
-     
     </>
   );
 }
