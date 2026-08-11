@@ -15,11 +15,15 @@ function Footer() {
 
       <div className="footer-container">
 
-        {/* Logo */}
+        {/* ===========================
+            LOGO Y REDES
+        =========================== */}
 
         <div className="footer-brand">
 
-          <h2>TNIS.PE</h2>
+          <h2>
+            TNIS<span>.pe</span>
+          </h2>
 
           <p>
             Descubre las mejores zapatillas para cada estilo.
@@ -28,19 +32,43 @@ function Footer() {
 
           <div className="footer-social">
 
-            <a href="#">
+            {/* Instagram */}
+            <a
+              href="https://www.instagram.com/tnisperu?igsh=Zmc0bGxqejRxMWV4"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
               <FaInstagram />
             </a>
 
-            <a href="#">
+            {/* TikTok */}
+            <a
+              href="https://www.tiktok.com/@tnisperu?_r=1&_t=ZS-98mgPVz7n9g"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+            >
               <FaTiktok />
             </a>
 
-            <a href="#">
+            {/* Facebook */}
+            <a
+              href="https://www.facebook.com/share/1EjqWDcwZs/?mibextid=wwXIfr"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
               <FaFacebookF />
             </a>
 
-            <a href="#">
+            {/* WhatsApp */}
+            <a
+              href="https://wa.me/51902824286"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+            >
               <FaWhatsapp />
             </a>
 
@@ -48,60 +76,99 @@ function Footer() {
 
         </div>
 
-        {/* Explorar */}
+
+        {/* ===========================
+            EXPLORAR
+        =========================== */}
 
         <div className="footer-links">
 
           <h3>Explorar</h3>
 
-          <Link to="/">Inicio</Link>
+          <Link to="/">
+            Inicio
+          </Link>
 
-          <Link to="/catalogo">Catálogo</Link>
+          <Link to="/catalogo">
+            Catálogo
+          </Link>
 
-          <Link to="/contacto">Contacto</Link>
+          <Link to="/contacto">
+            Contacto
+          </Link>
 
-          <Link to="/catalogo">Modelos 3D</Link>
 
         </div>
 
-        {/* Ayuda */}
+
+        {/* ===========================
+            AYUDA
+        =========================== */}
 
         <div className="footer-links">
 
           <h3>Ayuda</h3>
 
-          <a href="#">Preguntas frecuentes</a>
+          <a href="#">
+            Preguntas frecuentes
+          </a>
 
-          <a href="#">Envíos</a>
+          <a href="#">
+            Envíos
+          </a>
 
-          <a href="#">Cambios</a>
+          <a href="#">
+            Cambios
+          </a>
 
-          <a href="#">Términos</a>
+          <a href="#">
+            Términos
+          </a>
 
         </div>
 
-        {/* Contacto */}
+
+        {/* ===========================
+            CONTACTO
+        =========================== */}
 
         <div className="footer-links">
 
           <h3>Contacto</h3>
 
-          <span>Lima, Perú</span>
+          <span>
+            Lima, Perú
+          </span>
 
-          <span>+51 902 824 286</span>
+          <a
+            href="https://wa.me/51902824286"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            +51 902 824 286
+          </a>
 
-          <span>Lun - Sáb</span>
+          <span>
+            Lun - Sáb
+          </span>
 
-          <span>9:00 AM - 7:00 PM</span>
+          <span>
+            9:00 AM - 7:00 PM
+          </span>
 
         </div>
 
       </div>
 
+
+      {/* ===========================
+          COPYRIGHT
+      =========================== */}
+
       <div className="footer-bottom">
 
         <p>
-          © 2026 <strong>TNIS.PE</strong> · Todos los derechos reservados por sandro y chatgpt.
+          © 2026 <strong>TNIS.pe</strong> · Todos los derechos reservados.
         </p>
 
       </div>

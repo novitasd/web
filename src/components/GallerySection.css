@@ -45,16 +45,19 @@
       CARDS
 =========================*/
 
-.gallery-card{
+.gallery-card {
+  position: relative;
+  overflow: hidden;
 
-    position:relative;
+  background: #eeeeec;
 
-    overflow:hidden;
+  border-radius: 24px;
 
-    border-radius:24px;
+  cursor: pointer;
 
-    cursor:pointer;
-
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .gallery-card img{

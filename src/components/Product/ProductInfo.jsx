@@ -1,4 +1,5 @@
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaWhatsapp } from "react-icons/fa";
+
 import SizeSelector from "./SizeSelector/SizeSelector";
 import ProductNotes from "./ProductNotes";
 
@@ -13,7 +14,44 @@ function ProductInfo({
   availableStock,
   handleAddToCart,
   addedToCart,
-})  {
+}) {
+  const WHATSAPP_NUMBER = "51902824286";
+
+  // Verificar si el producto tiene una oferta válida
+  const hasOffer =
+    product.offerPrice &&
+    Number(product.offerPrice) < Number(product.price);
+
+  // Precio que realmente pagará el cliente
+  const currentPrice = hasOffer
+    ? product.offerPrice
+    : product.price;
+
+  const handleWhatsApp = () => {
+    if (!selectedSize || availableStock <= 0) return;
+
+    // Buscar la talla real usando el UUID seleccionado
+    const selectedSizeData = product.sizes?.find(
+      (size) => size.sizeId === selectedSize
+    );
+
+    const sizeName = selectedSizeData?.size || selectedSize;
+
+    const message = `Hola, estoy interesado en realizar la compra de este producto:
+
+${product.name}
+${product.brand?.name || ""} · Talla ${sizeName}
+S/ ${currentPrice}
+
+¿Me podrían confirmar su disponibilidad?`;
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+      message
+    )}`;
+
+    window.open(url, "_blank");
+  };
+
   return (
     <aside className="product-info">
 
@@ -35,9 +73,30 @@ function ProductInfo({
         {product.category?.name}
       </p>
 
-      <h2 className="price">
-        S/. {product.price}
-      </h2>
+      {/* PRECIO */}
+      <div className="price-container">
+        {hasOffer ? (
+          <>
+            <span className="retail-price">
+              S/. {product.price}
+            </span>
+
+            <div className="offer-price-row">
+              <h2 className="offer-price">
+                S/. {product.offerPrice}
+              </h2>
+
+              <span className="offer-label">
+                OFERTA
+              </span>
+            </div>
+          </>
+        ) : (
+          <h2 className="price">
+            S/. {product.price}
+          </h2>
+        )}
+      </div>
 
       <div className="info-group">
         <SizeSelector
@@ -48,23 +107,34 @@ function ProductInfo({
         />
       </div>
 
-       <button
-  type="button"
-  className="buy-btn"
-  onClick={handleAddToCart}
-  disabled={
-    !addedToCart &&
-    (!selectedSize || availableStock <= 0)
-  }
->
-  {addedToCart
-    ? "Ver carrito"
-    : !selectedSize
-      ? "Selecciona una talla"
-      : availableStock <= 0
-        ? "Agotado"
-        : "Añadir al carrito"}
-</button>
+      <button
+        type="button"
+        className="buy-btn"
+        onClick={handleAddToCart}
+        disabled={
+          !addedToCart &&
+          (!selectedSize || availableStock <= 0)
+        }
+      >
+        {addedToCart
+          ? "Ver carrito"
+          : !selectedSize
+            ? "Selecciona una talla"
+            : availableStock <= 0
+              ? "Agotado"
+              : "Añadir al carrito"}
+      </button>
+
+      {/* BOTÓN WHATSAPP */}
+      <button
+        type="button"
+        className="whatsapp-btns"
+        onClick={handleWhatsApp}
+        disabled={!selectedSize || availableStock <= 0}
+      >
+        <FaWhatsapp />
+        Comprar ahora
+      </button>
 
       <ProductNotes
         selectedStock={selectedStock}

@@ -1,34 +1,53 @@
 .logo {
-    width: 180px;
+  width: 180px;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    text-decoration: none;
+  text-decoration: none;
 
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .logo h2 {
-    font-size: 2rem;
-    font-weight: 900;
-    color: #111;
+  margin: 0;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 2.15rem;
+  font-weight: 900;
+  line-height: 0.8;
+
+  letter-spacing: -1.8px;
+
+  color: #111;
+
+  /* Aplasta verticalmente */
+  transform: scaleY(0.78);
+  transform-origin: left center;
 }
 
-@media (max-width:768px) {
+.logo h2 span {
+  color: #d71920;
+}
 
-    .logo {
-        grid-column: 2;
-        grid-row: 1;
+/* ===========================
+   MOBILE
+=========================== */
 
-        width: auto;
+@media (max-width: 768px) {
+  .logo {
+    grid-column: 2;
+    grid-row: 1;
 
-        justify-content: center;
-    }
+    width: auto;
 
-    .logo h2 {
-        font-size: 1.65rem;
-        margin: 0;
-    }
+    justify-content: center;
+  }
 
+  .logo h2 {
+    font-size: 1.75rem;
+
+    transform: scaleY(0.78);
+  }
 }

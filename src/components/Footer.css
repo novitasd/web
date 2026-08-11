@@ -34,16 +34,25 @@
         BRAND
 ==========================*/
 
-.footer-brand h2{
+.footer-brand h2 {
+  margin: 0 0 20px;
 
-    font-size:2rem;
+  font-family: Arial, Helvetica, sans-serif;
 
-    font-weight:900;
+  font-size: 2.2rem;
+  font-weight: 900;
+  line-height: 0.8;
 
-    color:#111;
+  letter-spacing: -2px;
 
-    margin-bottom:20px;
+  color: #111;
 
+  transform: scaleY(0.75);
+  transform-origin: left center;
+}
+
+.footer-brand h2 span {
+  color: #d71920;
 }
 
 .footer-brand p{

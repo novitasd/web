@@ -1,19 +1,40 @@
 import "./Loading.css";
 
-export default function Loading({ text = "Cargando...", fullScreen = true }) {
+export default function Loading({
+  text = "Cargando",
+  fullScreen = true,
+}) {
   return (
     <div className={`loading ${fullScreen ? "fullscreen" : ""}`}>
+
       <div className="loading-logo-wrapper">
 
-        <div className="loading-ring"></div>
+        {/* Anillo exterior */}
+        <div className="loading-ring loading-ring-outer"></div>
 
+        {/* Anillo interior */}
+        <div className="loading-ring loading-ring-inner"></div>
+
+        {/* Logo */}
         <div className="loading-logo">
-          TNIS
+          <span>TNIS</span>
         </div>
+
+        {/* Punto de luz */}
+        <div className="loading-orbit-dot"></div>
 
       </div>
 
-      <p>{text}</p>
+      <div className="loading-text">
+        <span>{text}</span>
+
+        <span className="loading-dots">
+          <span>.</span>
+          <span>.</span>
+          <span>.</span>
+        </span>
+      </div>
+
     </div>
   );
 }

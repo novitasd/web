@@ -4,19 +4,19 @@ const gallery = [
   {
     id: 1,
     title: "Jordan Collection",
-    image: "https://i.pinimg.com/1200x/02/02/c6/0202c6b33542551e612e8cfaeacb1cc7.jpg",
+    image: "https://i.pinimg.com/1200x/a3/9e/ed/a39eed1c9254dc80f8cef674c2ad2c98.jpg",
     link: "/catalogo/jordan",
   },
   {
     id: 2,
     title: "Street Style",
-    image: "https://i.pinimg.com/1200x/ab/63/f8/ab63f8e54442be2c8bc88bd7837acb56.jpg",
+    image: "https://i.pinimg.com/736x/55/81/66/558166e5936ffde47d4b2cc9b2dc51c6.jpg",
     link: "/catalogo/street-style",
   },
   {
     id: 3,
     title: "Running",
-    image: "https://i.pinimg.com/vwebpf/1200x/b4/5f/84/b45f84cf75019db3280a51086854c9fd.webp",
+    image: "https://i.pinimg.com/736x/05/db/ad/05dbad26fb972b2f2ae860a1f8d09416.jpg",
     link: "/catalogo/running",
   },
 

@@ -29,7 +29,10 @@ function ProductDetails({ slug }) {
   const [selectedStock, setSelectedStock] = useState(null);
   const [addedToCart, setAddedToCart] = useState(false);
 
-const navigate = useNavigate();
+  // NUEVO: controla la imagen que vuela al carrito
+  const [flyingImage, setFlyingImage] = useState(null);
+
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -74,10 +77,63 @@ const navigate = useNavigate();
   }, [slug]);
 
   useEffect(() => {
-  if (selectedSize) {
-    setAddedToCart(false);
-  }
-}, [selectedSize]);
+    if (selectedSize) {
+      setAddedToCart(false);
+    }
+  }, [selectedSize]);
+
+  /* ========================================
+     ANIMACIÓN HACIA EL CARRITO
+  ======================================== */
+
+  const animateToCart = () => {
+    if (!selectedImage) return;
+
+    const button = document.querySelector(".buy-btn");
+    const cartButton = document.querySelector(".cart-button");
+
+    if (!button || !cartButton) return;
+
+    const buttonRect = button.getBoundingClientRect();
+    const cartRect = cartButton.getBoundingClientRect();
+
+    const startX =
+      buttonRect.left +
+      buttonRect.width / 2;
+
+    const startY =
+      buttonRect.top +
+      buttonRect.height / 2;
+
+    const endX =
+      cartRect.left +
+      cartRect.width / 2;
+
+    const endY =
+      cartRect.top +
+      cartRect.height / 2;
+
+    setFlyingImage({
+      image: selectedImage,
+      startX,
+      startY,
+      endX,
+      endY,
+    });
+
+    // Tiempo de la animación
+    setTimeout(() => {
+      setFlyingImage(null);
+
+      // Animar el carrito
+      cartButton.classList.add("cart-bounce");
+
+      setTimeout(() => {
+        cartButton.classList.remove("cart-bounce");
+      }, 500);
+    }, 750);
+  };
+
   /* ========================================
      CARGANDO
   ======================================== */
@@ -129,26 +185,30 @@ const navigate = useNavigate();
   /* ========================================
      AGREGAR AL CARRITO
   ======================================== */
-const handleAddToCart = () => {
 
-  if (addedToCart) {
-    navigate("/checkout");
-    return;
-  }
+  const handleAddToCart = () => {
+    if (addedToCart) {
+      navigate("/checkout");
+      return;
+    }
 
-  addProductToCart({
-    product,
-    selectedSize,
-    selectedImage,
-    cart,
-    addToCart,
-  });
+    // Primero hacemos la animación
+    animateToCart();
 
-  setAddedToCart(true);
+    // Luego agregamos realmente el producto
+    addProductToCart({
+      product,
+      selectedSize,
+      selectedImage,
+      cart,
+      addToCart,
+    });
 
-  setSelectedSize("");
-  setSelectedStock(null);
-};
+    setAddedToCart(true);
+
+    setSelectedSize("");
+    setSelectedStock(null);
+  };
 
   /* ========================================
      PRODUCTO
@@ -168,24 +228,44 @@ const handleAddToCart = () => {
           productName={product.name}
         />
 
-       <ProductInfo
-  product={product}
-  selectedSize={selectedSize}
-  setSelectedSize={setSelectedSize}
-  selectedStock={selectedStock}
-  setSelectedStock={setSelectedStock}
-  availableStock={availableStock}
-  handleAddToCart={handleAddToCart}
-  addedToCart={addedToCart}
-/>
+        <ProductInfo
+          product={product}
+          selectedSize={selectedSize}
+          setSelectedSize={setSelectedSize}
+          selectedStock={selectedStock}
+          setSelectedStock={setSelectedStock}
+          availableStock={availableStock}
+          handleAddToCart={handleAddToCart}
+          addedToCart={addedToCart}
+        />
 
         <ProductExtra product={product} />
 
       </div>
-    <ProductRelated
-    product={product}
-/>
+
+      <ProductRelated
+        product={product}
+      />
+
       <Destacados />
+
+      {/* ========================================
+          IMAGEN VOLANDO AL CARRITO
+      ======================================== */}
+
+      {flyingImage && (
+        <img
+          src={flyingImage.image}
+          alt=""
+          className="flying-product-image"
+          style={{
+            "--start-x": `${flyingImage.startX}px`,
+            "--start-y": `${flyingImage.startY}px`,
+            "--end-x": `${flyingImage.endX}px`,
+            "--end-y": `${flyingImage.endY}px`,
+          }}
+        />
+      )}
 
     </section>
   );
