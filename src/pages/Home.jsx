@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import SliderCategorias from "../components/SliderCategorias.jsx";
 import StyleCategories from "../components/StyleCategories.jsx";
@@ -13,8 +14,111 @@ import "./Home.css";
 function Home() {
   const [videoReady, setVideoReady] = useState(false);
 
+  const homeTitle =
+    "TNIS.PE | Jordan, Nike, ASICS y Sneakers en Perú";
+
+  const homeDescription =
+    "Los tenis más buscados en Perú: Jordan, Nike, ASICS y más. Descubre nuestra colección de modelos exclusivos, tallas disponibles y compra online en TNIS.PE.";
+
+  const homeUrl =
+    "https://www.tnisperu.com/";
+
   return (
     <>
+      {/* ========================================
+          SEO - PÁGINA PRINCIPAL
+      ======================================== */}
+
+      <Helmet>
+        <title>{homeTitle}</title>
+
+        <meta
+          name="description"
+          content={homeDescription}
+        />
+
+        <meta
+          name="robots"
+          content="index, follow"
+        />
+
+        <link
+          rel="canonical"
+          href={homeUrl}
+        />
+
+        {/* Open Graph */}
+
+        <meta
+          property="og:title"
+          content={homeTitle}
+        />
+
+        <meta
+          property="og:description"
+          content={homeDescription}
+        />
+
+        <meta
+          property="og:url"
+          content={homeUrl}
+        />
+
+        <meta
+          property="og:type"
+          content="website"
+        />
+
+        <meta
+          property="og:site_name"
+          content="TNIS.PE"
+        />
+
+        <meta
+          property="og:locale"
+          content="es_PE"
+        />
+
+        <meta
+          property="og:image"
+          content={heroPoster}
+        />
+
+        {/* Twitter */}
+
+        <meta
+          name="twitter:card"
+          content="summary_large_image"
+        />
+
+        <meta
+          name="twitter:title"
+          content={homeTitle}
+        />
+
+        <meta
+          name="twitter:description"
+          content={homeDescription}
+        />
+
+        <meta
+          name="twitter:image"
+          content={heroPoster}
+        />
+
+        {/* WebSite Schema */}
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "TNIS.PE",
+            url: homeUrl,
+            description: homeDescription,
+          })}
+        </script>
+      </Helmet>
+
       <main>
         <div className="fondo">
 
@@ -22,7 +126,7 @@ function Home() {
 
             <img
               src={heroPoster}
-              alt="Hero"
+              alt="TNIS.PE - Sneakers Jordan, Nike y ASICS"
               className={`hero-poster ${videoReady ? "hide" : ""}`}
             />
 
@@ -59,7 +163,7 @@ function Home() {
             </h1>
 
             <p>
-              Las mejores zapatillas PK con acabados premium,
+              Las mejores zapatillas con acabados premium,
               envíos a todo el Perú y modelos exclusivos.
             </p>
 

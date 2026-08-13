@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import Loading from "../components/Loading/Loading";
 import Destacados from "../components/SliderCategorias";
@@ -29,7 +30,7 @@ function ProductDetails({ slug }) {
   const [selectedStock, setSelectedStock] = useState(null);
   const [addedToCart, setAddedToCart] = useState(false);
 
-  // NUEVO: controla la imagen que vuela al carrito
+  // Controla la imagen que vuela al carrito
   const [flyingImage, setFlyingImage] = useState(null);
 
   const navigate = useNavigate();
@@ -121,11 +122,9 @@ function ProductDetails({ slug }) {
       endY,
     });
 
-    // Tiempo de la animación
     setTimeout(() => {
       setFlyingImage(null);
 
-      // Animar el carrito
       cartButton.classList.add("cart-bounce");
 
       setTimeout(() => {
@@ -183,6 +182,82 @@ function ProductDetails({ slug }) {
   );
 
   /* ========================================
+     SEO DINÁMICO
+  ======================================== */
+
+  const seoTitle = `${product.name} | TNIS.PE`;
+
+  const seoDescription =
+    product.description?.trim() ||
+    `Compra ${product.name} en TNIS.PE. Consulta precio, tallas disponibles y detalles del producto.`;
+
+  const canonicalUrl =
+    `https://www.tnisperu.com/producto/${product.slug}`;
+
+  const productImage =
+    product.images?.[0]?.url ||
+    "https://www.tnisperu.com/og-image.jpg";
+
+  const brandName =
+    typeof product.brand === "object"
+      ? product.brand?.name
+      : product.brand || "TNIS.PE";
+
+  const productPrice =
+    Number(product.offerPrice ?? product.price ?? 0);
+
+  const hasStock = availableStock > 0;
+
+  /* ========================================
+     PRODUCT JSON-LD
+  ======================================== */
+
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+
+    name: product.name,
+
+    description: seoDescription,
+
+    image: product.images
+      ?.map((image) => image.url)
+      .filter(Boolean),
+
+    sku: product.sku || undefined,
+
+    brand: {
+      "@type": "Brand",
+      name: brandName,
+    },
+
+    url: canonicalUrl,
+
+    offers: {
+      "@type": "Offer",
+
+      url: canonicalUrl,
+
+      priceCurrency: "PEN",
+
+      price: productPrice.toFixed(2),
+
+      availability: hasStock
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
+
+      itemCondition:
+        "https://schema.org/NewCondition",
+
+      seller: {
+        "@type": "Organization",
+        name: "TNIS.PE",
+        url: "https://www.tnisperu.com/",
+      },
+    },
+  };
+
+  /* ========================================
      AGREGAR AL CARRITO
   ======================================== */
 
@@ -192,10 +267,8 @@ function ProductDetails({ slug }) {
       return;
     }
 
-    // Primero hacemos la animación
     animateToCart();
 
-    // Luego agregamos realmente el producto
     addProductToCart({
       product,
       selectedSize,
@@ -215,59 +288,144 @@ function ProductDetails({ slug }) {
   ======================================== */
 
   return (
-    <section className="product-details">
-
-      <ProductBreadcrumb product={product} />
-
-      <div className="product-layout">
-
-        <ProductGallery
-          images={product.images}
-          selectedImage={selectedImage}
-          setSelectedImage={setSelectedImage}
-          productName={product.name}
-        />
-
-        <ProductInfo
-          product={product}
-          selectedSize={selectedSize}
-          setSelectedSize={setSelectedSize}
-          selectedStock={selectedStock}
-          setSelectedStock={setSelectedStock}
-          availableStock={availableStock}
-          handleAddToCart={handleAddToCart}
-          addedToCart={addedToCart}
-        />
-
-        <ProductExtra product={product} />
-
-      </div>
-
-      <ProductRelated
-        product={product}
-      />
-
-      <Destacados />
-
+    <>
       {/* ========================================
-          IMAGEN VOLANDO AL CARRITO
+          SEO
       ======================================== */}
 
-      {flyingImage && (
-        <img
-          src={flyingImage.image}
-          alt=""
-          className="flying-product-image"
-          style={{
-            "--start-x": `${flyingImage.startX}px`,
-            "--start-y": `${flyingImage.startY}px`,
-            "--end-x": `${flyingImage.endX}px`,
-            "--end-y": `${flyingImage.endY}px`,
-          }}
-        />
-      )}
+      <Helmet>
+        <title>{seoTitle}</title>
 
-    </section>
+        <meta
+          name="description"
+          content={seoDescription}
+        />
+
+        <meta
+          name="robots"
+          content="index, follow"
+        />
+
+        <link
+          rel="canonical"
+          href={canonicalUrl}
+        />
+
+        {/* Open Graph */}
+
+        <meta
+          property="og:title"
+          content={seoTitle}
+        />
+
+        <meta
+          property="og:description"
+          content={seoDescription}
+        />
+
+        <meta
+          property="og:url"
+          content={canonicalUrl}
+        />
+
+        <meta
+          property="og:type"
+          content="product"
+        />
+
+        <meta
+          property="og:image"
+          content={productImage}
+        />
+
+        <meta
+          property="og:site_name"
+          content="TNIS.PE"
+        />
+
+        {/* Twitter */}
+
+        <meta
+          name="twitter:card"
+          content="summary_large_image"
+        />
+
+        <meta
+          name="twitter:title"
+          content={seoTitle}
+        />
+
+        <meta
+          name="twitter:description"
+          content={seoDescription}
+        />
+
+        <meta
+          name="twitter:image"
+          content={productImage}
+        />
+
+        {/* Product JSON-LD */}
+
+        <script type="application/ld+json">
+          {JSON.stringify(productSchema)}
+        </script>
+      </Helmet>
+
+      <section className="product-details">
+
+        <ProductBreadcrumb product={product} />
+
+        <div className="product-layout">
+
+          <ProductGallery
+            images={product.images}
+            selectedImage={selectedImage}
+            setSelectedImage={setSelectedImage}
+            productName={product.name}
+          />
+
+          <ProductInfo
+            product={product}
+            selectedSize={selectedSize}
+            setSelectedSize={setSelectedSize}
+            selectedStock={selectedStock}
+            setSelectedStock={setSelectedStock}
+            availableStock={availableStock}
+            handleAddToCart={handleAddToCart}
+            addedToCart={addedToCart}
+          />
+
+          <ProductExtra product={product} />
+
+        </div>
+
+        <ProductRelated
+          product={product}
+        />
+
+        <Destacados />
+
+        {/* ========================================
+            IMAGEN VOLANDO AL CARRITO
+        ======================================== */}
+
+        {flyingImage && (
+          <img
+            src={flyingImage.image}
+            alt=""
+            className="flying-product-image"
+            style={{
+              "--start-x": `${flyingImage.startX}px`,
+              "--start-y": `${flyingImage.startY}px`,
+              "--end-x": `${flyingImage.endX}px`,
+              "--end-y": `${flyingImage.endY}px`,
+            }}
+          />
+        )}
+
+      </section>
+    </>
   );
 }
 

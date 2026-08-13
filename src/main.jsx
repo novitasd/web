@@ -5,11 +5,14 @@ import "./index.css";
 import App from "./App.jsx";
 
 import { CartProvider } from "./context/CartContext";
+import { HelmetProvider } from "react-helmet-async";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <CartProvider>
-      <App />
-    </CartProvider>
+    <HelmetProvider>
+      <CartProvider>
+        <App />
+      </CartProvider>
+    </HelmetProvider>
   </StrictMode>
 );

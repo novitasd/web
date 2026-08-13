@@ -49,6 +49,10 @@ function App() {
           path="/catalogo/:categoria"
           element={<Catalogo />}
         />
+        <Route
+  path="/marca/:marca"
+  element={<Catalogo />}
+/>
 
         <Route path="/contacto" element={<Contacto />} />
 
@@ -57,6 +61,7 @@ function App() {
             path="/producto/:slug"
             element={<ProductPage />}
         />
+        
 
       </Routes>
 
