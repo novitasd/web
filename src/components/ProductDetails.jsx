@@ -181,33 +181,82 @@ function ProductDetails({ slug }) {
     cart
   );
 
-  /* ========================================
-     SEO DINÁMICO
-  ======================================== */
+/* ========================================
+   SEO DINÁMICO
+======================================== */
 
-  const seoTitle = `${product.name} | TNIS.PE`;
+const brandName =
+  typeof product.brand === "object"
+    ? product.brand?.name
+    : product.brand || "";
 
-  const seoDescription =
-    product.description?.trim() ||
-    `Compra ${product.name} en TNIS.PE. Consulta precio, tallas disponibles y detalles del producto.`;
+const productName =
+  product.name?.trim() || "Zapatillas";
 
-  const canonicalUrl =
-    `https://www.tnisperu.com/producto/${product.slug}`;
+const fullProductName =
+  brandName && !productName
+    ? `${brandName} ${productName}`
+    : brandName
+      ? `${brandName} ${productName}`
+      : productName;
 
-  const productImage =
-    product.images?.[0]?.url ||
-    "https://www.tnisperu.com/og-image.jpg";
 
-  const brandName =
-    typeof product.brand === "object"
-      ? product.brand?.name
-      : product.brand || "TNIS.PE";
+/* ========================================
+   TITLE
+======================================== */
 
-  const productPrice =
-    Number(product.offerPrice ?? product.price ?? 0);
+const seoTitle =
+  `${fullProductName} | Zapatillas en Perú | TNIS.PE`;
 
-  const hasStock = availableStock > 0;
 
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+const productDescription =
+  product.description?.trim() || "";
+
+const seoDescription =
+  productDescription.length > 20
+    ? `Compra ${fullProductName} en TNIS.PE. ${productDescription} Consulta tallas disponibles y compra online en Perú.`
+    : `Compra ${fullProductName} en TNIS.PE. Consulta precio, tallas disponibles y compra online en Perú.`;
+
+
+/* ========================================
+   CANONICAL
+======================================== */
+
+const canonicalUrl =
+  `https://www.tnisperu.com/producto/${product.slug}`;
+
+
+/* ========================================
+   IMAGEN
+======================================== */
+
+const productImage =
+  product.images?.[0]?.url ||
+  "https://www.tnisperu.com/og-image.jpg";
+
+
+/* ========================================
+   PRECIO
+======================================== */
+
+const productPrice =
+  Number(
+    product.offerPrice ??
+    product.price ??
+    0
+  );
+
+
+/* ========================================
+   STOCK
+======================================== */
+
+const hasStock =
+  availableStock > 0;
   /* ========================================
      PRODUCT JSON-LD
   ======================================== */
