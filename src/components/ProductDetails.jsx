@@ -265,7 +265,7 @@ const hasStock =
     "@context": "https://schema.org",
     "@type": "Product",
 
-    name: product.name,
+    name: fullProductName,
 
     description: seoDescription,
 
